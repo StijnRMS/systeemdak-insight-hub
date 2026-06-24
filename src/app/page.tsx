@@ -1,7 +1,13 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import React, { useState } from 'react'
 import { supabase } from '@/lib/supabase'
+
+const SLATE = '#1c2b3a'
+const SLATE_DEEP = '#111a23'
+const COPPER = '#c4914a'
+const WARM_WHITE = '#f8f7f5'
+const WARM_GRAY = '#f0ede9'
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -9,98 +15,92 @@ function scrollTo(id: string) {
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ backgroundColor: '#ffffff' }}>
       <Header />
       <main>
         <Hero />
-        <Pijnpunten />
-        <HoeHetWerkt />
-        <ProductSpotlight />
-        <SocialProof />
-        <PrijsIndicatie />
-        <LeadForm />
+        <WatIsSysteemdak />
+        <ProductSlate />
+        <ProductPermapan />
+        <Vergelijking />
+        <Toepassingen />
+        <FAQ />
+        <ContactForm />
       </main>
       <Footer />
     </div>
   )
 }
 
+/* ── HEADER ─────────────────────────────────────────────── */
 function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <div className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-md" style={{ backgroundColor: '#1a2744' }}>
-            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <a href="#top" className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded" style={{ backgroundColor: SLATE }}>
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
           </div>
-          <span className="font-semibold tracking-tight text-gray-900">
-            De Daker <span className="font-normal text-gray-500">Daksystemen</span>
+          <span className="text-lg font-bold tracking-tight" style={{ color: SLATE }}>
+            Systeem<span style={{ color: COPPER }}>dak</span>
           </span>
-        </div>
+        </a>
+        <nav className="hidden items-center gap-6 text-sm font-medium text-gray-600 md:flex">
+          <a href="#slate" className="hover:text-gray-900 transition-colors">JI Slate</a>
+          <a href="#permapan" className="hover:text-gray-900 transition-colors">Permapan</a>
+          <a href="#vergelijking" className="hover:text-gray-900 transition-colors">Vergelijking</a>
+          <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
+        </nav>
         <button
-          onClick={() => scrollTo('dakscan')}
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition hover:brightness-110"
-          style={{ backgroundColor: '#f59e0b', color: '#131d35' }}
+          onClick={() => scrollTo('contact')}
+          className="rounded-full border-2 px-4 py-1.5 text-sm font-semibold transition hover:bg-opacity-10"
+          style={{ borderColor: COPPER, color: COPPER }}
         >
-          Gratis dakscan
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
+          Meer info aanvragen
         </button>
       </div>
     </header>
   )
 }
 
+/* ── HERO ───────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden py-24 sm:py-32 lg:py-40" style={{ backgroundColor: '#1a2744' }}>
-      <div className="absolute inset-0 -z-10 opacity-10">
-        <div className="h-full w-full bg-gradient-to-br from-amber-400 to-transparent" />
+    <section id="top" className="relative overflow-hidden py-24 sm:py-32" style={{ backgroundColor: SLATE_DEEP }}>
+      <div className="absolute inset-0 opacity-5">
+        <div className="h-full w-full" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #c4914a 0, #c4914a 1px, transparent 0, transparent 50%)', backgroundSize: '20px 20px' }} />
       </div>
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur">
-            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#f59e0b' }} />
-            Al 200+ daken gerenoveerd in de regio
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium" style={{ borderColor: 'rgba(196,145,74,0.4)', color: COPPER, backgroundColor: 'rgba(196,145,74,0.08)' }}>
+            Onafhankelijke productinformatie
           </div>
           <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Een nieuw dak.{' '}
-            <span style={{ color: '#f59e0b' }}>Lagere energierekening.</span>{' '}
-            Binnen enkele dagen.
+            Geïsoleerde daksystemen:<br />
+            <span style={{ color: COPPER }}>alles wat u moet weten</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg" style={{ color: 'rgba(255,255,255,0.8)' }}>
-            Premium dakrenovatie met de Joris Ide JI Slate sandwichpanelen. Snel, netjes,
-            maximale isolatiewaarde — en één aanspreekpunt van offerte tot oplevering.
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
+            Sandwichdakpanelen combineren constructie, isolatie en afwerking in één laag.
+            Ontdek hoe <strong className="text-white">Joris Ide Slate</strong> en <strong className="text-white">Permapan</strong> werken,
+            wat de verschillen zijn en welk systeem bij uw situatie past.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-wrap gap-3">
             <button
-              onClick={() => scrollTo('dakscan')}
-              className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-base font-semibold transition hover:brightness-110"
-              style={{ backgroundColor: '#f59e0b', color: '#131d35' }}
+              onClick={() => scrollTo('slate')}
+              className="rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+              style={{ backgroundColor: COPPER }}
             >
-              Vraag je gratis dakscan aan
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
+              Bekijk de producten
             </button>
-            <p className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-              ✓ 100% gratis · geen verplichtingen
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-3 gap-6 max-w-sm">
-            {[
-              { value: '200+', label: 'daken gerenoveerd' },
-              { value: '30 jr', label: 'garantie' },
-              { value: '4.9/5', label: 'beoordeling' },
-            ].map((s) => (
-              <div key={s.label}>
-                <div className="text-2xl font-bold text-white">{s.value}</div>
-                <div className="mt-1 text-xs uppercase tracking-wide" style={{ color: 'rgba(255,255,255,0.6)' }}>{s.label}</div>
-              </div>
-            ))}
+            <button
+              onClick={() => scrollTo('vergelijking')}
+              className="rounded-full border px-6 py-3 text-sm font-semibold transition hover:bg-white/10"
+              style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.85)' }}
+            >
+              Producten vergelijken
+            </button>
           </div>
         </div>
       </div>
@@ -108,118 +108,24 @@ function Hero() {
   )
 }
 
-function Pijnpunten() {
-  const items = [
-    {
-      icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
-        </svg>
-      ),
-      title: 'Energierekening blijft stijgen?',
-      body: 'Een slecht geïsoleerd dak is de grote boosdoener. Tot 30% van je warmte verdwijnt erdoor.',
-    },
-    {
-      icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-      title: 'Oud, lelijk of lekkend dak?',
-      body: 'Wij vervangen het volledig in dagen, niet weken. Geen eindeloze bouwwerf, wél een strak resultaat.',
-    },
-    {
-      icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
-      title: 'Premies lopen af.',
-      body: 'Profiteer nu nog van maximale subsidies. We begeleiden je volledig in de aanvraag.',
-    },
+/* ── WAT IS EEN SYSTEEMDAK ──────────────────────────────── */
+function WatIsSysteemdak() {
+  const kenmerken = [
+    { icon: '🧱', title: 'Alles-in-één paneel', body: 'Constructie, isolatie en dakbedekking zitten verwerkt in één sandwichpaneel. Geen afzonderlijke lagen nodig.' },
+    { icon: '🌡️', title: 'Maximale isolatie', body: 'De PIR- of PUR-kern zorgt voor een uitstekende thermische weerstand, meetbaar in U-waarde en Rd-waarde.' },
+    { icon: '⚡', title: 'Snelle plaatsing', body: 'Grote panelen worden snel gemonteerd. De bouwtijd is aanzienlijk korter dan bij traditionele dakopbouw.' },
+    { icon: '♻️', title: 'Duurzame keuze', body: 'Lange levensduur, weinig onderhoud en een positief effect op uw energieprestatiepeil (EPC).' },
   ]
-
   return (
-    <section className="py-20 sm:py-28" style={{ backgroundColor: '#f8fafc' }}>
+    <section className="py-20 sm:py-28" style={{ backgroundColor: WARM_WHITE }}>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#d97706' }}>Waarom nu?</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: '#131d35' }}>
-            Wachten kost je elke maand geld
-          </h2>
-          <p className="mt-4 text-base text-gray-500">Drie redenen om je dakrenovatie niet langer uit te stellen.</p>
-        </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {items.map((item) => (
-            <div key={item.title} className="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ backgroundColor: 'rgba(245,158,11,0.12)', color: '#d97706' }}>
-                {item.icon}
-              </div>
-              <h3 className="mt-5 text-lg font-semibold" style={{ color: '#131d35' }}>{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-500">{item.body}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-10 text-center text-sm font-medium" style={{ color: '#131d35' }}>
-          <span className="mr-2 inline-block h-2 w-2 rounded-full align-middle" style={{ backgroundColor: '#f59e0b' }} />
-          Aanvragen voor 2026 zijn beperkt — plan vandaag nog je gratis scan.
-        </p>
-      </div>
-    </section>
-  )
-}
-
-function HoeHetWerkt() {
-  const steps = [
-    {
-      icon: (
-        <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-        </svg>
-      ),
-      title: 'Gratis dakscan',
-      body: 'We komen ter plaatse, meten en analyseren je dak. Je krijgt meteen een eerlijk advies.',
-    },
-    {
-      icon: (
-        <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      ),
-      title: 'Duidelijke offerte',
-      body: 'Vaste prijs, geen verrassingen. Inclusief volledige begeleiding bij premies en subsidies.',
-    },
-    {
-      icon: (
-        <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      ),
-      title: 'Snelle uitvoering',
-      body: 'Ons eigen team plaatst je nieuwe dak in dagen, netjes opgeleverd tot het laatste detail.',
-    },
-  ]
-
-  return (
-    <section className="py-20 sm:py-28 bg-white">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#d97706' }}>Hoe het werkt</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: '#131d35' }}>
-            Van eerste contact tot nieuw dak in 3 stappen
-          </h2>
-        </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {steps.map((step, i) => (
-            <div key={step.title} className="relative rounded-2xl border border-gray-100 bg-white p-7 shadow-sm">
-              <div className="absolute -top-4 left-7 flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: '#1a2744' }}>
-                {i + 1}
-              </div>
-              <div className="mt-2" style={{ color: '#1a2744' }}>{step.icon}</div>
-              <h3 className="mt-4 text-lg font-semibold" style={{ color: '#131d35' }}>{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-500">{step.body}</p>
+        <SectionHeader eyebrow="Wat is een systeemdak?" title="Eén paneel. Volledige oplossing." description="Een sandwichdaksysteem is een geprefabriceerd dakpaneel bestaande uit twee metalen deklagen met een isolerende kern ertussen. Het vervangt de volledige traditionele dakopbouw in één handeling." />
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {kenmerken.map(k => (
+            <div key={k.title} className="rounded-2xl bg-white p-6 shadow-sm border border-gray-100">
+              <div className="text-3xl">{k.icon}</div>
+              <h3 className="mt-4 font-semibold" style={{ color: SLATE }}>{k.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-gray-500">{k.body}</p>
             </div>
           ))}
         </div>
@@ -228,69 +134,132 @@ function HoeHetWerkt() {
   )
 }
 
-function ProductSpotlight() {
-  const features = [
-    { title: 'Superieure isolatie', body: 'Lage U-waarde, voelbaar warmer in winter, koeler in zomer.' },
-    { title: 'Snel gemonteerd', body: 'Grote panelen, kortere bouwtijd, minder overlast.' },
-    { title: '30 jaar garantie', body: 'Premium kwaliteit van Joris Ide — voor decennia zorgeloos.' },
-    { title: 'Strakke esthetiek', body: 'Tijdloos slate-design dat elk huis opwaardeert.' },
+/* ── PRODUCT: JI SLATE ──────────────────────────────────── */
+function ProductSlate() {
+  const specs = [
+    { label: 'Fabrikant', value: 'Joris Ide (België)' },
+    { label: 'Kern', value: 'PIR (polyisocyanuraat)' },
+    { label: 'U-waarde', value: 'tot 0,17 W/m²K (120mm)' },
+    { label: 'Dakbedekking', value: 'Geprofileerde staalplaat, leisteenlook' },
+    { label: 'Dikte', value: '60 mm – 200 mm' },
+    { label: 'Garantie', value: 'tot 30 jaar' },
+    { label: 'Toepassing', value: 'Hellende daken (>5°)' },
+    { label: 'Brandklasse', value: 'B-s2, d0 (Euroklasse)' },
   ]
-  const comparison = [
-    { feat: 'Isolatiewaarde', ji: 'Topklasse (PIR-kern)', trad: 'Beperkt' },
-    { feat: 'Uitvoeringstijd', ji: 'Enkele dagen', trad: 'Weken' },
-    { feat: 'Garantie', ji: '30 jaar', trad: '10 jaar' },
-    { feat: 'Onderhoud', ji: 'Minimaal', trad: 'Regelmatig' },
-  ]
-
   return (
-    <section className="py-20 sm:py-28" style={{ backgroundColor: '#131d35' }}>
+    <section id="slate" className="py-20 sm:py-28 bg-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid items-start gap-12 lg:grid-cols-2">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#f59e0b' }}>Het product</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Joris Ide JI Slate — het sandwichpaneel dat alles oplost in één laag
+            <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ backgroundColor: 'rgba(196,145,74,0.1)', color: COPPER }}>
+              Product 1
+            </div>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: SLATE }}>
+              Joris Ide JI Slate
             </h2>
-            <p className="mt-4 leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
-              Een nieuw dak hoeft geen weken te duren. Met JI Slate combineren we constructie,
-              isolatie en afwerking in één strak paneel.
+            <p className="mt-1 text-lg font-medium text-gray-400">Het geïsoleerde hellend daksysteem</p>
+            <p className="mt-5 leading-relaxed text-gray-600">
+              De <strong>Joris Ide JI Slate</strong> is een Belgisch sandwichdakpaneel voor hellende daken. Het paneel combineert een stijve PIR-isolatiekern met een geprofileerde stalen bovenbekleding in een tijdloos leisteenrelief. Het resultaat is een dak dat er verzorgd uitziet én uitstekend isoleert.
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {features.map((f) => (
-                <div key={f.title} className="flex gap-3">
-                  <svg className="mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} style={{ color: '#f59e0b' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <div>
-                    <div className="text-sm font-semibold text-white">{f.title}</div>
-                    <div className="mt-0.5 text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>{f.body}</div>
-                  </div>
+            <p className="mt-4 leading-relaxed text-gray-600">
+              Het systeem is geschikt voor renovatie én nieuwbouw. Bij renovatie wordt het paneel vaak rechtstreeks op de bestaande dakstructuur geplaatst, wat sloopwerk minimaliseert. De PIR-kern heeft een hoge isolatiewaarde per centimeter dikte — een groot voordeel bij beperkte dakhoogte.
+            </p>
+            <div className="mt-6 space-y-3">
+              <Voordeel>Hoge isolatiewaarde (lage U-waarde) dankzij PIR-kern</Voordeel>
+              <Voordeel>Leisteenrelief geeft authentieke dakuitstraling</Voordeel>
+              <Voordeel>Snel te plaatsen — minder bouwhinder</Voordeel>
+              <Voordeel>Geschikt voor renovatie over bestaand dak</Voordeel>
+              <Voordeel>Bijdrage aan EPC-verbetering (energielabel)</Voordeel>
+            </div>
+            <button
+              onClick={() => scrollTo('contact')}
+              className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+              style={{ backgroundColor: COPPER }}
+            >
+              Vraag info aan bij een dakwerker
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+          <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Technische specificaties</h3>
+            <div className="divide-y divide-gray-50">
+              {specs.map(s => (
+                <div key={s.label} className="flex justify-between gap-4 py-3 text-sm">
+                  <span className="text-gray-500">{s.label}</span>
+                  <span className="font-medium text-right" style={{ color: SLATE }}>{s.value}</span>
                 </div>
               ))}
             </div>
-          </div>
-          <div className="rounded-2xl border p-6 backdrop-blur" style={{ borderColor: 'rgba(255,255,255,0.1)', backgroundColor: 'rgba(255,255,255,0.04)' }}>
-            <div className="grid grid-cols-3 gap-3 border-b pb-3 text-xs uppercase tracking-wide" style={{ borderColor: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)' }}>
-              <div>Eigenschap</div>
-              <div style={{ color: '#f59e0b' }}>JI Slate</div>
-              <div>Traditioneel</div>
+            <div className="mt-6 rounded-xl p-4 text-sm leading-relaxed text-gray-600" style={{ backgroundColor: WARM_GRAY }}>
+              <strong style={{ color: SLATE }}>Wanneer kiezen voor JI Slate?</strong><br />
+              Ideaal voor woningen met een hellend dak die energetisch willen renoveren met een strakke, moderne uitstraling — zonder maanden bouwoverlast.
             </div>
-            {comparison.map((row) => (
-              <div key={row.feat} className="grid grid-cols-3 gap-3 border-b py-4 text-sm last:border-b-0" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
-                <div style={{ color: 'rgba(255,255,255,0.65)' }}>{row.feat}</div>
-                <div className="font-semibold text-white">{row.ji}</div>
-                <div style={{ color: 'rgba(255,255,255,0.55)' }}>{row.trad}</div>
-              </div>
-            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ── PRODUCT: PERMAPAN ──────────────────────────────────── */
+function ProductPermapan() {
+  const specs = [
+    { label: 'Type', value: 'Geïsoleerd dakpaneel' },
+    { label: 'Kern', value: 'PUR (polyurethaan)' },
+    { label: 'U-waarde', value: 'tot 0,15 W/m²K' },
+    { label: 'Dakbedekking', value: 'Vlakke of licht geprofileerde staalplaat' },
+    { label: 'Dikte', value: '80 mm – 220 mm' },
+    { label: 'Toepassing', value: 'Vlakke & licht hellende daken' },
+    { label: 'Waterdichtheid', value: 'Volledig geïntegreerd systeem' },
+    { label: 'Brandklasse', value: 'B-s2, d0 (Euroklasse)' },
+  ]
+  return (
+    <section id="permapan" className="py-20 sm:py-28" style={{ backgroundColor: WARM_WHITE }}>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+          <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm lg:order-1">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Technische specificaties</h3>
+            <div className="divide-y divide-gray-50">
+              {specs.map(s => (
+                <div key={s.label} className="flex justify-between gap-4 py-3 text-sm">
+                  <span className="text-gray-500">{s.label}</span>
+                  <span className="font-medium text-right" style={{ color: SLATE }}>{s.value}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 rounded-xl p-4 text-sm leading-relaxed text-gray-600" style={{ backgroundColor: WARM_GRAY }}>
+              <strong style={{ color: SLATE }}>Wanneer kiezen voor Permapan?</strong><br />
+              Uitstekend voor platte of licht hellende daken op woningen, bijgebouwen en loodsen. De volledig geïntegreerde waterdichtheid maakt dit systeem bijzonder betrouwbaar.
+            </div>
+          </div>
+          <div className="lg:order-2">
+            <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ backgroundColor: 'rgba(28,43,58,0.08)', color: SLATE }}>
+              Product 2
+            </div>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: SLATE }}>
+              Permapan
+            </h2>
+            <p className="mt-1 text-lg font-medium text-gray-400">Het geïsoleerde plat daksysteem</p>
+            <p className="mt-5 leading-relaxed text-gray-600">
+              <strong>Permapan</strong> is een sandwichdakpaneel voor vlakke en licht hellende daken. Het systeem integreert isolatie en dakbedekking in één paneel met een PUR-kern — een van de best isolerende materialen die vandaag beschikbaar zijn.
+            </p>
+            <p className="mt-4 leading-relaxed text-gray-600">
+              Het gesloten paneel is volledig waterdicht uit de fabriek. Naad voor naad worden de panelen met speciaal gevormde verbindingen samengezet, waardoor er geen koudebrug of vochtprobleem kan optreden. Permapan is populair voor renovatie van platte daken op woningen en voor industriële toepassingen.
+            </p>
+            <div className="mt-6 space-y-3">
+              <Voordeel>Superieure isolatiewaarde door PUR-kern</Voordeel>
+              <Voordeel>Volledig geïntegreerde waterdichtheid</Voordeel>
+              <Voordeel>Naadverbinding elimineert koudebruggen</Voordeel>
+              <Voordeel>Toepasbaar op woning, bijgebouw en loods</Voordeel>
+              <Voordeel>Lange levensduur met minimaal onderhoud</Voordeel>
+            </div>
             <button
-              onClick={() => scrollTo('dakscan')}
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition hover:brightness-110"
-              style={{ backgroundColor: '#f59e0b', color: '#131d35' }}
+              onClick={() => scrollTo('contact')}
+              className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:brightness-110"
+              style={{ backgroundColor: SLATE, color: 'white' }}
             >
-              Bekijk wat het voor jouw dak betekent
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
+              Vraag info aan bij een dakwerker
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </button>
           </div>
         </div>
@@ -299,95 +268,129 @@ function ProductSpotlight() {
   )
 }
 
-function SocialProof() {
-  const reviews = [
-    { name: 'Familie Janssens', city: 'Antwerpen', text: 'Op vijf dagen lag er een compleet nieuw dak. Strak werk, alles netjes opgeruimd, en het verschil in temperatuur op zolder is enorm.' },
-    { name: 'Peter De Smet', city: 'Gent', text: 'Eindelijk een aannemer die afspraken nakomt. Eerlijke prijs, perfecte opvolging van de premies, geen verrassingen achteraf.' },
-    { name: 'Ann Vermeiren', city: 'Mechelen', text: 'De gratis dakscan was meteen duidelijk en deskundig. Wij voelden ons geen seconde onder druk gezet. Echt een aanrader.' },
+/* ── VERGELIJKING ───────────────────────────────────────── */
+function Vergelijking() {
+  const rijen = [
+    { kenmerk: 'Daktype', slate: 'Hellend (>5°)', permapan: 'Vlak / licht hellend' },
+    { kenmerk: 'Isolatiekern', slate: 'PIR', permapan: 'PUR' },
+    { kenmerk: 'Beste U-waarde', slate: '0,17 W/m²K', permapan: '0,15 W/m²K' },
+    { kenmerk: 'Esthetiek', slate: 'Leisteenrelief', permapan: 'Strak vlak' },
+    { kenmerk: 'Waterdichtheid', slate: 'Via dakbedekking', permapan: 'Volledig geïntegreerd' },
+    { kenmerk: 'Renovatie over bestaand dak', slate: '✓ Mogelijk', permapan: '✓ Mogelijk' },
+    { kenmerk: 'EPC-verbetering', slate: '✓ Ja', permapan: '✓ Ja' },
   ]
-
   return (
-    <section className="py-20 sm:py-28 bg-white">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#d97706' }}>Wat klanten zeggen</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: '#131d35' }}>
-            4.9 / 5 op basis van honderden gerenoveerde daken
-          </h2>
-          <div className="mt-3 flex items-center justify-center gap-1" style={{ color: '#f59e0b' }}>
-            {[...Array(5)].map((_, i) => (
-              <svg key={i} className="h-5 w-5 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-            ))}
-            <span className="ml-2 text-sm font-medium text-gray-500">Actief in Vlaanderen</span>
+    <section id="vergelijking" className="py-20 sm:py-28 bg-white">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Vergelijking" title="JI Slate vs. Permapan" description="Beide systemen zijn kwalitatief hoogwaardige oplossingen. Het juiste systeem hangt af van uw daktype en situatie." />
+        <div className="mt-12 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+          <div className="grid grid-cols-3 gap-0 border-b border-gray-100 bg-gray-50 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+            <div>Kenmerk</div>
+            <div style={{ color: COPPER }}>JI Slate</div>
+            <div style={{ color: SLATE }}>Permapan</div>
           </div>
-        </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {reviews.map((r) => (
-            <figure key={r.name} className="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm">
-              <div className="flex gap-1" style={{ color: '#f59e0b' }}>
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="h-4 w-4 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <blockquote className="mt-4 text-sm leading-relaxed text-gray-600">&ldquo;{r.text}&rdquo;</blockquote>
-              <figcaption className="mt-5">
-                <div className="text-sm font-semibold" style={{ color: '#131d35' }}>{r.name}</div>
-                <div className="text-sm text-gray-500">{r.city}</div>
-              </figcaption>
-            </figure>
+          {rijen.map((r, i) => (
+            <div key={r.kenmerk} className={`grid grid-cols-3 gap-0 px-6 py-4 text-sm ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
+              <div className="font-medium text-gray-700">{r.kenmerk}</div>
+              <div className="text-gray-600">{r.slate}</div>
+              <div className="text-gray-600">{r.permapan}</div>
+            </div>
           ))}
         </div>
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs font-semibold uppercase tracking-widest text-gray-400">
-          <span>Joris Ide Partner</span>
-          <span>·</span>
-          <span>Erkend Aannemer</span>
-          <span>·</span>
-          <span>Premiebegeleiding</span>
-          <span>·</span>
-          <span>30 jaar garantie</span>
+        <p className="mt-6 text-center text-sm text-gray-400">
+          Twijfelt u welk systeem geschikt is? Een erkend dakwerker bekijkt uw situatie en geeft concreet advies.
+        </p>
+        <div className="mt-4 text-center">
+          <button
+            onClick={() => scrollTo('contact')}
+            className="inline-flex items-center gap-2 rounded-full border-2 px-6 py-2.5 text-sm font-semibold transition hover:bg-opacity-5"
+            style={{ borderColor: COPPER, color: COPPER }}
+          >
+            Laat u adviseren door een dakwerker
+          </button>
         </div>
       </div>
     </section>
   )
 }
 
-function PrijsIndicatie() {
+/* ── TOEPASSINGEN ───────────────────────────────────────── */
+function Toepassingen() {
+  const items = [
+    { titel: 'Woningrenovatie', tekst: 'Energetische renovatie van een bestaand hellend of plat dak. Vaak plaatsbaar over het bestaande dak zonder volledige sloop.', systeem: 'JI Slate of Permapan' },
+    { titel: 'Nieuwbouw woning', tekst: 'Snelle en efficiënte dakopbouw voor nieuwbouwwoningen. Één product vervangt meerdere traditionele lagen.', systeem: 'JI Slate of Permapan' },
+    { titel: 'Bijgebouw & garage', tekst: 'Platte daken van garages, carports en bijgebouwen krijgen een duurzame, volledig waterdichte oplossing.', systeem: 'Permapan' },
+    { titel: 'Landbouw & industrie', tekst: 'Grote oppervlakken worden snel gedekt. De panelen zijn bestand tegen extreme weersomstandigheden.', systeem: 'JI Slate of Permapan' },
+  ]
   return (
-    <section className="py-20 sm:py-28" style={{ backgroundColor: '#f8fafc' }}>
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#d97706' }}>Prijs</p>
-        <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: '#131d35' }}>
-          Wat kost een dakrenovatie?
-        </h2>
-        <p className="mt-4 text-base text-gray-500">
-          Een eerlijke prijs hangt af van je dakoppervlak, helling en huidige staat. Daarom geven we nooit prijzen op de gok — wel meteen na de gratis scan.
-        </p>
-        <button
-          onClick={() => scrollTo('dakscan')}
-          className="mt-8 inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-base font-semibold transition hover:brightness-110"
-          style={{ backgroundColor: '#f59e0b', color: '#131d35' }}
-        >
-          Ontvang een vrijblijvende prijsindicatie op maat
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+    <section className="py-20 sm:py-28" style={{ backgroundColor: WARM_WHITE }}>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Toepassingen" title="Voor welke projecten is dit geschikt?" />
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map(item => (
+            <div key={item.titel} className="rounded-2xl bg-white p-6 shadow-sm border border-gray-100">
+              <h3 className="font-semibold" style={{ color: SLATE }}>{item.titel}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-gray-500">{item.tekst}</p>
+              <div className="mt-4 inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium" style={{ backgroundColor: 'rgba(196,145,74,0.1)', color: COPPER }}>
+                {item.systeem}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
 
-function LeadForm() {
+/* ── FAQ ────────────────────────────────────────────────── */
+function FAQ() {
+  const vragen = [
+    { v: 'Kan ik een sandwichdakpaneel op mijn bestaand dak plaatsen?', a: 'In veel gevallen wel. Bij renovatie wordt het paneel dikwijls rechtstreeks op de bestaande dakstructuur of dakbedekking gemonteerd. Dit bespaart sloopkosten en -tijd. Een dakwerker beoordeelt of de draagstructuur voldoende sterk is.' },
+    { v: 'Wat is het verschil tussen PIR en PUR isolatie?', a: 'Beide zijn schuimplastics met uitstekende isolerende eigenschappen. PIR (polyisocyanuraat) heeft een iets hogere brandweerstand en wordt daarom vaak gebruikt in hellende daken (JI Slate). PUR (polyurethaan) heeft een marginaal hogere isolatiewaarde en is gangbaar in platte daksystemen zoals Permapan.' },
+    { v: 'Welke dikte heb ik nodig om te voldoen aan de normen?', a: 'De Belgische EPB-normen schrijven een minimale Rd-waarde voor. Voor een dak ligt die momenteel op minimum 6 m²K/W in nieuwbouw. Een dikte van 120–160 mm PIR of PUR haalt dit comfortabel. Een dakwerker of energieadviseur berekent de exacte benodigde dikte voor uw project.' },
+    { v: 'Hoe lang gaat een sandwichdakpaneel mee?', a: 'Een correct geplaatst sandwichdaksysteem gaat 30 tot 50 jaar mee. Joris Ide geeft tot 30 jaar productgarantie. Het stalen buitenoppervlak is behandeld met een corrosiewerende coating die bestand is tegen Belgisch klimaat.' },
+    { v: 'Wat kost een sandwichdaksysteem?', a: 'De prijs hangt af van het dakoppervlak, de gekozen dikte en de complexiteit van het project. Sandwichdaksystemen zijn initieel duurder dan traditionele dakbedekking, maar de plaatskost is lager door de snellere uitvoering en de isolatie is meegenomen in de prijs. Vraag een offerte aan bij een erkend dakwerker voor een correcte vergelijking.' },
+  ]
+  const [open, setOpen] = useState<number | null>(null)
+  return (
+    <section id="faq" className="py-20 sm:py-28 bg-white">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Veelgestelde vragen" title="Uw vragen beantwoord" />
+        <div className="mt-12 space-y-3">
+          {vragen.map((item, i) => (
+            <div key={i} className="rounded-xl border border-gray-100 overflow-hidden">
+              <button
+                onClick={() => setOpen(open === i ? null : i)}
+                className="flex w-full items-center justify-between px-5 py-4 text-left text-sm font-medium transition hover:bg-gray-50"
+                style={{ color: SLATE }}
+              >
+                {item.v}
+                <svg className={`h-4 w-4 shrink-0 ml-4 transition-transform ${open === i ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: COPPER }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {open === i && (
+                <div className="px-5 pb-5 text-sm leading-relaxed text-gray-600" style={{ backgroundColor: WARM_WHITE }}>
+                  {item.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ── CONTACT FORM ───────────────────────────────────────── */
+function ContactForm() {
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
   const [daktype, setDaktype] = useState('')
+  const [product, setProduct] = useState('')
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError('')
     const fd = new FormData(e.currentTarget)
@@ -397,107 +400,94 @@ function LeadForm() {
       email: fd.get('email') as string,
       postcode: fd.get('postcode') as string,
       daktype,
-      bericht: (fd.get('bericht') as string) || null,
+      bericht: `Product interesse: ${product || 'niet opgegeven'}. ${fd.get('bericht') || ''}`.trim(),
       aangemaakt_op: new Date().toISOString(),
     }
 
-    if (!data.daktype) {
-      setError('Kies een daktype.')
-      return
-    }
+    if (!daktype) { setError('Kies een daktype.'); return }
 
     setSubmitting(true)
     const { error: sbError } = await supabase.from('leads').insert([data])
     setSubmitting(false)
 
-    if (sbError) {
-      setError('Er ging iets mis. Probeer het opnieuw of bel ons.')
-      return
-    }
+    if (sbError) { setError('Er ging iets mis. Probeer het opnieuw.'); return }
     setDone(true)
   }
 
   return (
-    <section id="dakscan" className="py-20 sm:py-28" style={{ backgroundColor: '#131d35' }}>
+    <section id="contact" className="py-20 sm:py-28" style={{ backgroundColor: SLATE_DEEP }}>
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#f59e0b' }}>Gratis dakscan</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Plan je gratis dakscan
+          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ backgroundColor: 'rgba(196,145,74,0.15)', color: COPPER }}>
+            Meer info aanvragen
+          </div>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Laat u adviseren door een erkend dakwerker
           </h2>
-          <p className="mt-3" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            We bellen je binnen 24 uur terug om een moment in te plannen. Geen verplichtingen.
+          <p className="mt-3 text-base" style={{ color: 'rgba(255,255,255,0.65)' }}>
+            Vul uw gegevens in en een vakman neemt contact met u op voor persoonlijk advies over uw project — zonder verplichtingen.
           </p>
         </div>
-        <div className="mt-10 rounded-2xl border border-white/10 bg-white p-6 shadow-2xl sm:p-8">
+
+        <div className="mt-10 rounded-2xl bg-white p-6 shadow-2xl sm:p-8">
           {done ? (
             <div className="py-10 text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full" style={{ backgroundColor: 'rgba(245,158,11,0.12)' }}>
-                <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#d97706' }}>
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full" style={{ backgroundColor: 'rgba(196,145,74,0.12)' }}>
+                <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: COPPER }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="mt-5 text-xl font-semibold" style={{ color: '#131d35' }}>Bedankt voor je aanvraag!</h3>
-              <p className="mt-2 text-sm text-gray-500">We nemen binnen 24 uur contact met je op om de gratis dakscan in te plannen.</p>
-              <button onClick={() => { setDone(false); setDaktype('') }} className="mt-6 text-sm font-medium underline-offset-4 hover:underline" style={{ color: '#1a2744' }}>
-                Nieuwe aanvraag indienen
+              <h3 className="mt-5 text-xl font-semibold" style={{ color: SLATE }}>Aanvraag ontvangen</h3>
+              <p className="mt-2 text-sm text-gray-500">Een erkend dakwerker neemt zo snel mogelijk contact met u op.</p>
+              <button onClick={() => { setDone(false); setDaktype(''); setProduct('') }} className="mt-6 text-sm font-medium underline-offset-4 hover:underline" style={{ color: COPPER }}>
+                Nieuwe aanvraag
               </button>
             </div>
           ) : (
             <form onSubmit={onSubmit} className="grid gap-5">
               <div className="grid gap-5 sm:grid-cols-2">
-                <div className="grid gap-1.5">
-                  <label htmlFor="naam" className="text-sm font-medium" style={{ color: '#131d35' }}>Naam <span style={{ color: '#d97706' }}>*</span></label>
-                  <input id="naam" name="naam" required maxLength={100} placeholder="Voornaam Naam" className="rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100" />
-                </div>
-                <div className="grid gap-1.5">
-                  <label htmlFor="telefoon" className="text-sm font-medium" style={{ color: '#131d35' }}>Telefoon <span style={{ color: '#d97706' }}>*</span></label>
-                  <input id="telefoon" name="telefoon" type="tel" required maxLength={30} placeholder="04XX XX XX XX" className="rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100" />
-                </div>
+                <Field id="naam" label="Naam" required>
+                  <input id="naam" name="naam" required maxLength={100} placeholder="Voornaam Naam" className={inputCls} />
+                </Field>
+                <Field id="telefoon" label="Telefoon" required>
+                  <input id="telefoon" name="telefoon" type="tel" required maxLength={30} placeholder="04XX XX XX XX" className={inputCls} />
+                </Field>
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
-                <div className="grid gap-1.5">
-                  <label htmlFor="email" className="text-sm font-medium" style={{ color: '#131d35' }}>E-mail <span style={{ color: '#d97706' }}>*</span></label>
-                  <input id="email" name="email" type="email" required maxLength={200} placeholder="jij@email.be" className="rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100" />
-                </div>
-                <div className="grid gap-1.5">
-                  <label htmlFor="postcode" className="text-sm font-medium" style={{ color: '#131d35' }}>Postcode <span style={{ color: '#d97706' }}>*</span></label>
-                  <input id="postcode" name="postcode" required maxLength={20} placeholder="2000" className="rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100" />
-                </div>
+                <Field id="email" label="E-mail" required>
+                  <input id="email" name="email" type="email" required maxLength={200} placeholder="u@email.be" className={inputCls} />
+                </Field>
+                <Field id="postcode" label="Postcode" required>
+                  <input id="postcode" name="postcode" required maxLength={20} placeholder="2000" className={inputCls} />
+                </Field>
               </div>
-              <div className="grid gap-1.5">
-                <label htmlFor="daktype" className="text-sm font-medium" style={{ color: '#131d35' }}>Type dak <span style={{ color: '#d97706' }}>*</span></label>
-                <select
-                  id="daktype"
-                  value={daktype}
-                  onChange={(e) => setDaktype(e.target.value)}
-                  className="rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100"
-                  style={{ color: daktype ? '#1a1a1a' : '#9ca3af' }}
-                >
-                  <option value="" disabled>Kies een daktype</option>
-                  <option value="hellend">Hellend dak</option>
-                  <option value="plat">Plat dak</option>
-                  <option value="combinatie">Combinatie hellend &amp; plat</option>
-                  <option value="bijgebouw">Bijgebouw / loods</option>
-                  <option value="weet-niet">Weet ik niet zeker</option>
-                </select>
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Field id="daktype" label="Type dak" required>
+                  <select id="daktype" value={daktype} onChange={e => setDaktype(e.target.value)} className={inputCls} style={{ color: daktype ? '#1a1a1a' : '#9ca3af' }}>
+                    <option value="" disabled>Kies daktype</option>
+                    <option value="hellend">Hellend dak</option>
+                    <option value="plat">Plat dak</option>
+                    <option value="combinatie">Combinatie</option>
+                    <option value="weet-niet">Weet ik niet</option>
+                  </select>
+                </Field>
+                <Field id="product" label="Interesse in">
+                  <select id="product" value={product} onChange={e => setProduct(e.target.value)} className={inputCls} style={{ color: product ? '#1a1a1a' : '#9ca3af' }}>
+                    <option value="" disabled>Kies product</option>
+                    <option value="JI Slate">Joris Ide JI Slate</option>
+                    <option value="Permapan">Permapan</option>
+                    <option value="beide">Beide / weet nog niet</option>
+                  </select>
+                </Field>
               </div>
-              <div className="grid gap-1.5">
-                <label htmlFor="bericht" className="text-sm font-medium" style={{ color: '#131d35' }}>
-                  Bericht <span className="text-gray-400 font-normal">(optioneel)</span>
-                </label>
-                <textarea id="bericht" name="bericht" rows={3} maxLength={2000} placeholder="Iets dat we vooraf moeten weten?" className="resize-none rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100" />
-              </div>
+              <Field id="bericht" label="Uw vraag of situatie">
+                <textarea id="bericht" name="bericht" rows={3} maxLength={2000} placeholder="Beschrijf kort uw project of stel uw vraag…" className={`${inputCls} resize-none`} />
+              </Field>
               {error && <p className="text-sm text-red-600">{error}</p>}
-              <button
-                type="submit"
-                disabled={submitting}
-                className="h-14 w-full rounded-full text-base font-semibold transition hover:brightness-110 disabled:opacity-60"
-                style={{ backgroundColor: '#f59e0b', color: '#131d35' }}
-              >
-                {submitting ? 'Versturen…' : 'Ja, ik wil mijn gratis dakscan!'}
+              <button type="submit" disabled={submitting} className="h-13 w-full rounded-full py-3.5 text-base font-semibold text-white transition hover:brightness-110 disabled:opacity-60" style={{ backgroundColor: COPPER }}>
+                {submitting ? 'Versturen…' : 'Stuur mijn aanvraag →'}
               </button>
-              <p className="text-center text-xs text-gray-400">Geen verplichtingen · Reactie binnen 24u · 100% gratis</p>
+              <p className="text-center text-xs text-gray-400">Vrijblijvend · geen verplichtingen · wij respecteren uw privacy</p>
             </form>
           )}
         </div>
@@ -506,43 +496,59 @@ function LeadForm() {
   )
 }
 
+/* ── FOOTER ─────────────────────────────────────────────── */
 function Footer() {
   return (
-    <footer className="border-t border-gray-100 bg-white py-12">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 md:grid-cols-3">
-        <div>
-          <div className="flex items-center gap-2 font-semibold tracking-tight text-gray-900">
-            <div className="flex h-9 w-9 items-center justify-center rounded-md" style={{ backgroundColor: '#1a2744' }}>
-              <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            </div>
-            De Daker Daksystemen
+    <footer className="border-t border-gray-100 py-10" style={{ backgroundColor: WARM_WHITE }}>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+        <div className="flex items-center gap-2 font-bold" style={{ color: SLATE }}>
+          <div className="flex h-7 w-7 items-center justify-center rounded" style={{ backgroundColor: SLATE }}>
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
           </div>
-          <p className="mt-3 max-w-xs text-sm text-gray-500">
-            Premium dakrenovatie met Joris Ide JI Slate. Eén aanspreekpunt, van offerte tot oplevering.
-          </p>
+          Systeem<span style={{ color: COPPER }}>dak</span>
         </div>
-        <div className="text-sm">
-          <div className="font-semibold" style={{ color: '#131d35' }}>Contact</div>
-          <ul className="mt-3 space-y-2 text-gray-500">
-            <li>📞 0XX XX XX XX</li>
-            <li>✉️ info@dedaker.be</li>
-            <li>📍 Actief in heel Vlaanderen</li>
-          </ul>
-        </div>
-        <div className="text-sm">
-          <div className="font-semibold" style={{ color: '#131d35' }}>Bedrijf</div>
-          <ul className="mt-3 space-y-2 text-gray-500">
-            <li>BTW: BEXXXX.XXX.XXX</li>
-            <li><a href="#" className="hover:text-gray-900">Privacybeleid</a></li>
-            <li><a href="#" className="hover:text-gray-900">Algemene voorwaarden</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="mx-auto mt-10 max-w-6xl px-4 sm:px-6 text-xs text-gray-400">
-        © {new Date().getFullYear()} De Daker Daksystemen — Alle rechten voorbehouden.
+        <p className="text-xs text-center text-gray-400">
+          Onafhankelijke informatie over geïsoleerde daksystemen. Niet gelieerd aan een specifieke fabrikant of installateur.
+        </p>
+        <p className="text-xs text-gray-400">© {new Date().getFullYear()} Systeemdak</p>
       </div>
     </footer>
   )
 }
+
+/* ── HELPERS ────────────────────────────────────────────── */
+function SectionHeader({ eyebrow, title, description }: { eyebrow?: string; title: string; description?: string }) {
+  return (
+    <div className="mx-auto max-w-2xl text-center">
+      {eyebrow && <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: COPPER }}>{eyebrow}</p>}
+      <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: SLATE }}>{title}</h2>
+      {description && <p className="mt-4 text-base leading-relaxed text-gray-500">{description}</p>}
+    </div>
+  )
+}
+
+function Voordeel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-start gap-2.5 text-sm text-gray-600">
+      <svg className="mt-0.5 h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} style={{ color: COPPER }}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+      {children}
+    </div>
+  )
+}
+
+function Field({ id, label, required, children }: { id: string; label: string; required?: boolean; children: React.ReactNode }) {
+  return (
+    <div className="grid gap-1.5">
+      <label htmlFor={id} className="text-sm font-medium" style={{ color: SLATE }}>
+        {label}{required && <span className="ml-0.5" style={{ color: COPPER }}>*</span>}
+      </label>
+      {children}
+    </div>
+  )
+}
+
+const inputCls = "rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 w-full"

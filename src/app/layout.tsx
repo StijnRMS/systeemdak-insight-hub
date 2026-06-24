@@ -5,9 +5,9 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'De Daker Daksystemen — Gratis dakscan & premium dakrenovatie',
+  title: 'Systeemdak — Alles over geïsoleerde daksystemen',
   description:
-    'Verlaag je energierekening met een nieuw, perfect geïsoleerd dak. Joris Ide JI Slate sandwichpanelen. Snelle uitvoering, maximale isolatie. Vraag je gratis dakscan aan.',
+    'Ontdek alles over geïsoleerde sandwichdaksystemen: Joris Ide Slate en Permapan. Onafhankelijke productinformatie, vergelijkingen en advies voor uw dakrenovatie.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #1a2744;
-  --navy-deep: #131d35;
-  --amber: #f59e0b;
-  --amber-deep: #d97706;
+  --slate:   #1c2b3a;
+  --slate-deep: #111a23;
+  --copper:  #c4914a;
+  --copper-light: #d4a862;
+  --warm-white: #f8f7f5;
+  --warm-gray: #f0ede9;
 }
 
 body {
