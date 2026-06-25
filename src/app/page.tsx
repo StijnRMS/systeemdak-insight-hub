@@ -180,7 +180,7 @@ function TraditioneelVsSandwich() {
           </div>
         </div>
         <p className="mt-8 text-center text-sm text-gray-400">
-          Bij renovatie is het in de meeste gevallen mogelijk om de panelen rechtstreeks over de bestaande dakbedekking te plaatsen — sloopkosten vallen weg.
+          Bij renovatie worden de bestaande pannen of leien eerst verwijderd. De sandwichdakpanelen worden daarna rechtstreeks op de gordingen bevestigd — zonder volledige herbouw van de dakstructuur.
         </p>
       </div>
     </section>
@@ -229,7 +229,7 @@ function ProductSlate() {
               <Voordeel>Leistenen uitstraling zonder het gewicht van echte leien</Voordeel>
               <Voordeel>Verborgen bevestiging — geen zichtbare schroeven of schroefgaten</Voordeel>
               <Voordeel>PIR-kern: hoge isolatiewaarde per cm dikte, CFC/HCFC-vrij</Voordeel>
-              <Voordeel>Plaatsbaar over bestaande dakbedekking bij renovatie</Voordeel>
+              <Voordeel>Bij renovatie bevestigd op bestaande gordingen — geen volledige herbouw nodig</Voordeel>
               <Voordeel>Lichtgewicht staal — geen extra versteviging van de draagstructuur</Voordeel>
               <Voordeel>Minimaal onderhoud dankzij duurzame Grandem-coating</Voordeel>
             </div>
@@ -385,7 +385,7 @@ function Toepassingen() {
     {
       icon: '🏠',
       titel: 'Renovatie van bestaande woning',
-      tekst: 'Het paneel wordt in de meeste gevallen rechtstreeks over de bestaande dakbedekking geplaatst. Geen sloopwerk, geen afvalkosten, geen weken bouwoverlast.',
+      tekst: 'De bestaande pannen of leien worden verwijderd, waarna de sandwichdakpanelen rechtstreeks op de gordingen worden bevestigd. De draagstructuur blijft volledig behouden.',
       systeem: 'JI Slate of JI Permapan',
     },
     {
@@ -433,7 +433,7 @@ function FAQ() {
   const vragen = [
     {
       v: 'Moet de bestaande dakbedekking verwijderd worden?',
-      a: 'In de meeste gevallen niet. Bij renovatie worden sandwichdakpanelen rechtstreeks op de bestaande gordingen of dakbedekking geplaatst. Dit bespaart aanzienlijk op sloopkosten en -tijd. Een dakwerker beoordeelt ter plaatse of de draagstructuur voldoende sterk is.',
+      a: 'Ja, de bestaande pannen of leien worden altijd verwijderd. De sandwichdakpanelen worden daarna rechtstreeks op de gordingen bevestigd — de bestaande dakstructuur blijft behouden. Dit is sneller en goedkoper dan een volledige dakbouw, maar er is wel degelijk afvoer van het oude dakmateriaal nodig.',
     },
     {
       v: 'Wat is het verschil tussen JI Slate en JI Permapan?',
@@ -491,7 +491,7 @@ function ContactForm() {
   const [daktype, setDaktype] = useState('')
   const [product, setProduct] = useState('')
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault()
     setError('')
     if (!daktype) { setError('Kies een daktype.'); return }
