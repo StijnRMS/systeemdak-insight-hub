@@ -15,11 +15,11 @@ function scrollTo(id: string) {
 
 export default function Home() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#ffffff' }}>
+    <div className="min-h-screen bg-white">
       <Header />
       <main>
         <Hero />
-        <WatIsSysteemdak />
+        <TraditioneelVsSandwich />
         <ProductSlate />
         <ProductPermapan />
         <Vergelijking />
@@ -47,15 +47,15 @@ function Header() {
             Systeem<span style={{ color: COPPER }}>dak</span>
           </span>
         </a>
-        <nav className="hidden items-center gap-6 text-sm font-medium text-gray-600 md:flex">
+        <nav className="hidden items-center gap-6 text-sm font-medium text-gray-500 md:flex">
+          <a href="#hoe-het-werkt" className="hover:text-gray-900 transition-colors">Hoe het werkt</a>
           <a href="#slate" className="hover:text-gray-900 transition-colors">JI Slate</a>
           <a href="#permapan" className="hover:text-gray-900 transition-colors">Permapan</a>
-          <a href="#vergelijking" className="hover:text-gray-900 transition-colors">Vergelijking</a>
           <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
         </nav>
         <button
           onClick={() => scrollTo('contact')}
-          className="rounded-full border-2 px-4 py-1.5 text-sm font-semibold transition hover:bg-opacity-10"
+          className="rounded-full border-2 px-4 py-1.5 text-sm font-semibold transition hover:opacity-80"
           style={{ borderColor: COPPER, color: COPPER }}
         >
           Meer info aanvragen
@@ -69,36 +69,26 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden py-24 sm:py-32" style={{ backgroundColor: SLATE_DEEP }}>
-      <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #c4914a 0, #c4914a 1px, transparent 0, transparent 50%)', backgroundSize: '20px 20px' }} />
-      </div>
+      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #c4914a 0, #c4914a 1px, transparent 0, transparent 50%)', backgroundSize: '20px 20px' }} />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium" style={{ borderColor: 'rgba(196,145,74,0.4)', color: COPPER, backgroundColor: 'rgba(196,145,74,0.08)' }}>
-            Onafhankelijke productinformatie
+            Onafhankelijke productinformatie voor particulieren
           </div>
           <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Geïsoleerde daksystemen:<br />
-            <span style={{ color: COPPER }}>alles wat u moet weten</span>
+            Uw woning opnieuw dakdicht én<br />
+            <span style={{ color: COPPER }}>perfect geïsoleerd in enkele dagen</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
-            Sandwichdakpanelen combineren constructie, isolatie en afwerking in één laag.
-            Ontdek hoe <strong className="text-white">Joris Ide Slate</strong> en <strong className="text-white">Permapan</strong> werken,
-            wat de verschillen zijn en welk systeem bij uw situatie past.
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
+            Geïsoleerde sandwichdakpanelen vervangen de volledige traditionele dakopbouw in één handeling.
+            Ontdek hoe <strong className="text-white">JI Slate</strong> en <strong className="text-white">JI Permapan</strong> van Joris Ide werken,
+            en welk systeem het beste past bij uw woning.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              onClick={() => scrollTo('slate')}
-              className="rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
-              style={{ backgroundColor: COPPER }}
-            >
-              Bekijk de producten
+            <button onClick={() => scrollTo('hoe-het-werkt')} className="rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110" style={{ backgroundColor: COPPER }}>
+              Hoe werkt een sandwichdak?
             </button>
-            <button
-              onClick={() => scrollTo('vergelijking')}
-              className="rounded-full border px-6 py-3 text-sm font-semibold transition hover:bg-white/10"
-              style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.85)' }}
-            >
+            <button onClick={() => scrollTo('vergelijking')} className="rounded-full border px-6 py-3 text-sm font-semibold transition hover:bg-white/10" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.85)' }}>
               Producten vergelijken
             </button>
           </div>
@@ -108,91 +98,159 @@ function Hero() {
   )
 }
 
-/* ── WAT IS EEN SYSTEEMDAK ──────────────────────────────── */
-function WatIsSysteemdak() {
-  const kenmerken = [
-    { icon: '🧱', title: 'Alles-in-één paneel', body: 'Constructie, isolatie en dakbedekking zitten verwerkt in één sandwichpaneel. Geen afzonderlijke lagen nodig.' },
-    { icon: '🌡️', title: 'Maximale isolatie', body: 'De PIR- of PUR-kern zorgt voor een uitstekende thermische weerstand, meetbaar in U-waarde en Rd-waarde.' },
-    { icon: '⚡', title: 'Snelle plaatsing', body: 'Grote panelen worden snel gemonteerd. De bouwtijd is aanzienlijk korter dan bij traditionele dakopbouw.' },
-    { icon: '♻️', title: 'Duurzame keuze', body: 'Lange levensduur, weinig onderhoud en een positief effect op uw energieprestatiepeil (EPC).' },
+/* ── TRADITIONEEL VS SANDWICH ───────────────────────────── */
+function TraditioneelVsSandwich() {
+  const traditioneel = [
+    { stap: '1', label: 'Dakstructuur / gordingen', detail: 'Houten of stalen draagstructuur' },
+    { stap: '2', label: 'Isolatieplaten', detail: 'Afzonderlijke PIR- of minerale wolplaten' },
+    { stap: '3', label: 'Dampscherm', detail: 'Folie om vochtdoorslag te voorkomen' },
+    { stap: '4', label: 'Onderdak / onderpan', detail: 'Extra waterkerende laag' },
+    { stap: '5', label: 'Lattwerk & tengels', detail: 'Houten onderbouw voor de dakpannen' },
+    { stap: '6', label: 'Dakpannen of leien', detail: 'Definitieve dakbedekking' },
+  ]
+  const sandwich = [
+    { stap: '1', label: 'Dakstructuur / gordingen', detail: 'Houten of stalen draagstructuur' },
+    { stap: '2', label: 'Sandwichdakpaneel', detail: 'Isolatie + dampscherm + dakbedekking in één paneel', highlight: true },
   ]
   return (
-    <section className="py-20 sm:py-28" style={{ backgroundColor: WARM_WHITE }}>
+    <section id="hoe-het-werkt" className="py-20 sm:py-28" style={{ backgroundColor: WARM_WHITE }}>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeader eyebrow="Wat is een systeemdak?" title="Eén paneel. Volledige oplossing." description="Een sandwichdaksysteem is een geprefabriceerd dakpaneel bestaande uit twee metalen deklagen met een isolerende kern ertussen. Het vervangt de volledige traditionele dakopbouw in één handeling." />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {kenmerken.map(k => (
-            <div key={k.title} className="rounded-2xl bg-white p-6 shadow-sm border border-gray-100">
-              <div className="text-3xl">{k.icon}</div>
-              <h3 className="mt-4 font-semibold" style={{ color: SLATE }}>{k.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-500">{k.body}</p>
+        <SectionHeader
+          eyebrow="Traditioneel vs. sandwichdak"
+          title="Waarom een sandwichdaksysteem zoveel sneller gaat"
+          description="Bij een traditionele dakrenovatie worden 5 tot 6 afzonderlijke lagen aangebracht door verschillende vaklieden. Een sandwichdakpaneel vervangt die lagen allemaal in één stap."
+        />
+        <div className="mt-14 grid gap-8 lg:grid-cols-2">
+          {/* Traditioneel */}
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="rounded-full px-3 py-1 text-xs font-semibold text-gray-500 bg-gray-100 uppercase tracking-wider">Traditionele dakopbouw</div>
+              <span className="text-xs text-gray-400">4 – 8 weken</span>
             </div>
-          ))}
+            <div className="space-y-2">
+              {traditioneel.map((l) => (
+                <div key={l.stap} className="flex items-start gap-3 rounded-lg border border-gray-100 p-3">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-gray-500">{l.stap}</div>
+                  <div>
+                    <div className="text-sm font-medium text-gray-700">{l.label}</div>
+                    <div className="text-xs text-gray-400 mt-0.5">{l.detail}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 rounded-lg bg-gray-50 p-3 text-xs text-gray-500">
+              Elke laag vereist een aparte levering en plaatsing. Weersomstandigheden bepalen de planning.
+            </div>
+          </div>
+
+          {/* Sandwich */}
+          <div className="rounded-2xl border-2 p-6 shadow-sm" style={{ borderColor: COPPER, backgroundColor: 'rgba(196,145,74,0.04)' }}>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider" style={{ backgroundColor: 'rgba(196,145,74,0.15)', color: COPPER }}>Sandwichdaksysteem</div>
+              <span className="text-xs font-semibold" style={{ color: COPPER }}>1 – 3 dagen</span>
+            </div>
+            <div className="space-y-2">
+              {sandwich.map((l) => (
+                <div key={l.stap} className={`flex items-start gap-3 rounded-lg p-3 ${l.highlight ? 'border-2' : 'border border-gray-100 bg-white'}`} style={l.highlight ? { borderColor: COPPER, backgroundColor: 'rgba(196,145,74,0.06)' } : {}}>
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style={{ backgroundColor: l.highlight ? COPPER : '#9ca3af' }}>{l.stap}</div>
+                  <div>
+                    <div className="text-sm font-medium" style={{ color: l.highlight ? SLATE : '#374151' }}>{l.label}</div>
+                    <div className="text-xs mt-0.5" style={{ color: l.highlight ? '#78716c' : '#9ca3af' }}>{l.detail}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 rounded-lg p-3 text-xs" style={{ backgroundColor: 'rgba(196,145,74,0.1)', color: '#92400e' }}>
+              <strong>Resultaat:</strong> constructie, isolatie en waterdichtheid worden in één dag geplaatst door één vakploeg. Geen coördinatie tussen verschillende aannemers nodig.
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+              <div className="rounded-lg bg-white p-3 border border-gray-100">
+                <div className="text-lg font-bold" style={{ color: SLATE }}>–70%</div>
+                <div className="text-xs text-gray-500 mt-0.5">minder bouwtijd</div>
+              </div>
+              <div className="rounded-lg bg-white p-3 border border-gray-100">
+                <div className="text-lg font-bold" style={{ color: SLATE }}>1 ploeg</div>
+                <div className="text-xs text-gray-500 mt-0.5">één vakman</div>
+              </div>
+              <div className="rounded-lg bg-white p-3 border border-gray-100">
+                <div className="text-lg font-bold" style={{ color: SLATE }}>30 jr</div>
+                <div className="text-xs text-gray-500 mt-0.5">productgarantie</div>
+              </div>
+            </div>
+          </div>
         </div>
+        <p className="mt-8 text-center text-sm text-gray-400">
+          Bij renovatie is het in de meeste gevallen mogelijk om de panelen rechtstreeks over de bestaande dakbedekking te plaatsen — sloopkosten vallen weg.
+        </p>
       </div>
     </section>
   )
 }
 
-/* ── PRODUCT: JI SLATE ──────────────────────────────────── */
+/* ── PRODUCT: JI VB SLATE 1000 DAK ─────────────────────── */
 function ProductSlate() {
   const specs = [
-    { label: 'Fabrikant', value: 'Joris Ide (België)' },
-    { label: 'Kern', value: 'PIR (polyisocyanuraat)' },
-    { label: 'U-waarde', value: 'tot 0,17 W/m²K (120mm)' },
-    { label: 'Dakbedekking', value: 'Geprofileerde staalplaat, leisteenlook' },
-    { label: 'Dikte', value: '60 mm – 200 mm' },
-    { label: 'Garantie', value: 'tot 30 jaar' },
-    { label: 'Toepassing', value: 'Hellende daken (>5°)' },
-    { label: 'Brandklasse', value: 'B-s2, d0 (Euroklasse)' },
+    { label: 'Fabrikant', value: 'Joris Ide (Zwevezele, België)' },
+    { label: 'Type', value: 'JI VB Slate 1000 Dak' },
+    { label: 'Isolatiekern', value: 'PIR (polyisocyanuraat), CFC/HCFC-vrij' },
+    { label: 'Afwerking buitenzijde', value: 'Staalplaat met leisteenmotief (125 × 250 mm)' },
+    { label: 'Coating', value: 'Grandem 40 µ — RAL 7024 (antraciet)' },
+    { label: 'Dikte 60 mm', value: 'U-waarde 0,37 W/m²K — R 2,65 m²K/W' },
+    { label: 'Dikte 120 mm', value: 'U-waarde 0,18 W/m²K — R 5,60 m²K/W' },
+    { label: 'Minimale dakhelling', value: '≥ 25°' },
+    { label: 'Bevestiging', value: 'Verborgen — geen zichtbare schroeven' },
+    { label: 'Paneelbreedte', value: '1000 mm (werkend)' },
+    { label: 'Paneelengte', value: '2500 – 10 000 mm (stap 250 mm)' },
+    { label: 'Brandklasse', value: 'B-s1,d0 (EN 13501-1)' },
   ]
   return (
     <section id="slate" className="py-20 sm:py-28 bg-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ backgroundColor: 'rgba(196,145,74,0.1)', color: COPPER }}>
-              Product 1
+            <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ backgroundColor: 'rgba(196,145,74,0.1)', color: COPPER }}>
+              Product 1 · Hellend dak ≥ 25°
             </div>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: SLATE }}>
-              Joris Ide JI Slate
+              Joris Ide JI VB Slate 1000 Dak
             </h2>
-            <p className="mt-1 text-lg font-medium text-gray-400">Het geïsoleerde hellend daksysteem</p>
+            <p className="mt-1 text-base font-medium text-gray-400">Klassiek leisteenlook · verborgen bevestiging · PIR-kern</p>
             <p className="mt-5 leading-relaxed text-gray-600">
-              De <strong>Joris Ide JI Slate</strong> is een Belgisch sandwichdakpaneel voor hellende daken. Het paneel combineert een stijve PIR-isolatiekern met een geprofileerde stalen bovenbekleding in een tijdloos leisteenrelief. Het resultaat is een dak dat er verzorgd uitziet én uitstekend isoleert.
+              De <strong>JI VB Slate 1000 Dak</strong> is een geïsoleerd sandwichdakpaneel met de klassieke uitstraling van leien.
+              De buitenplaat heeft een reliëfpatroon van 125 × 250 mm dat het uitzicht van echte leien nabootst.
+              Dankzij de verborgen bevestiging zijn er geen zichtbare schroeven — het eindresultaat is strak en verzorgd.
             </p>
             <p className="mt-4 leading-relaxed text-gray-600">
-              Het systeem is geschikt voor renovatie én nieuwbouw. Bij renovatie wordt het paneel vaak rechtstreeks op de bestaande dakstructuur geplaatst, wat sloopwerk minimaliseert. De PIR-kern heeft een hoge isolatiewaarde per centimeter dikte — een groot voordeel bij beperkte dakhoogte.
+              De PIR-isolatiekern is CFC- en HCFC-vrij en biedt uitstekende thermische prestaties per centimeter dikte.
+              Bij 120 mm dikte haalt het paneel een U-waarde van 0,18 W/m²K — ruim voldoende voor de Belgische EPB-normen.
+              Het paneel is geschikt voor hellende daken met een minimale helling van 25°.
             </p>
             <div className="mt-6 space-y-3">
-              <Voordeel>Hoge isolatiewaarde (lage U-waarde) dankzij PIR-kern</Voordeel>
-              <Voordeel>Leisteenrelief geeft authentieke dakuitstraling</Voordeel>
-              <Voordeel>Snel te plaatsen — minder bouwhinder</Voordeel>
-              <Voordeel>Geschikt voor renovatie over bestaand dak</Voordeel>
-              <Voordeel>Bijdrage aan EPC-verbetering (energielabel)</Voordeel>
+              <Voordeel>Leistenen uitstraling zonder het gewicht van echte leien</Voordeel>
+              <Voordeel>Verborgen bevestiging — geen zichtbare schroeven of schroefgaten</Voordeel>
+              <Voordeel>PIR-kern: hoge isolatiewaarde per cm dikte, CFC/HCFC-vrij</Voordeel>
+              <Voordeel>Plaatsbaar over bestaande dakbedekking bij renovatie</Voordeel>
+              <Voordeel>Lichtgewicht staal — geen extra versteviging van de draagstructuur</Voordeel>
+              <Voordeel>Minimaal onderhoud dankzij duurzame Grandem-coating</Voordeel>
             </div>
-            <button
-              onClick={() => scrollTo('contact')}
-              className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
-              style={{ backgroundColor: COPPER }}
-            >
+            <button onClick={() => scrollTo('contact')} className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110" style={{ backgroundColor: COPPER }}>
               Vraag info aan bij een dakwerker
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </button>
           </div>
           <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Technische specificaties</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Technische specificaties</h3>
             <div className="divide-y divide-gray-50">
               {specs.map(s => (
                 <div key={s.label} className="flex justify-between gap-4 py-3 text-sm">
-                  <span className="text-gray-500">{s.label}</span>
+                  <span className="text-gray-400 shrink-0">{s.label}</span>
                   <span className="font-medium text-right" style={{ color: SLATE }}>{s.value}</span>
                 </div>
               ))}
             </div>
-            <div className="mt-6 rounded-xl p-4 text-sm leading-relaxed text-gray-600" style={{ backgroundColor: WARM_GRAY }}>
-              <strong style={{ color: SLATE }}>Wanneer kiezen voor JI Slate?</strong><br />
-              Ideaal voor woningen met een hellend dak die energetisch willen renoveren met een strakke, moderne uitstraling — zonder maanden bouwoverlast.
+            <div className="mt-5 rounded-xl p-4 text-sm leading-relaxed" style={{ backgroundColor: WARM_GRAY }}>
+              <strong style={{ color: SLATE }}>Geschikt voor:</strong>
+              <span className="text-gray-600"> woningen met een hellend dak van minimaal 25°. Ideaal voor renovatie én nieuwbouw in residentiële sector.</span>
             </div>
           </div>
         </div>
@@ -201,63 +259,69 @@ function ProductSlate() {
   )
 }
 
-/* ── PRODUCT: PERMAPAN ──────────────────────────────────── */
+/* ── PRODUCT: JI PERMAPAN 1100 ──────────────────────────── */
 function ProductPermapan() {
   const specs = [
-    { label: 'Type', value: 'Geïsoleerd dakpaneel' },
-    { label: 'Kern', value: 'PUR (polyurethaan)' },
-    { label: 'U-waarde', value: 'tot 0,15 W/m²K' },
-    { label: 'Dakbedekking', value: 'Vlakke of licht geprofileerde staalplaat' },
-    { label: 'Dikte', value: '80 mm – 220 mm' },
-    { label: 'Toepassing', value: 'Vlakke & licht hellende daken' },
-    { label: 'Waterdichtheid', value: 'Volledig geïntegreerd systeem' },
-    { label: 'Brandklasse', value: 'B-s2, d0 (Euroklasse)' },
+    { label: 'Fabrikant', value: 'Joris Ide (Zwevezele, België)' },
+    { label: 'Type', value: 'JI Permapan 1100' },
+    { label: 'Isolatiekern', value: 'PIR (polyisocyanuraat), CFC/HCFC-vrij' },
+    { label: 'Afwerking buitenzijde', value: 'Geprofileerde stalen dakpanvorm (183 × 350 mm)' },
+    { label: 'Dikte 60 mm', value: 'U-waarde 0,33 W/m²K — R 3,00 m²K/W' },
+    { label: 'Dikte 80 mm', value: 'U-waarde 0,26 W/m²K — R 3,90 m²K/W' },
+    { label: 'Dikte 100 mm', value: 'U-waarde 0,21 W/m²K — R 4,80 m²K/W' },
+    { label: 'Dikte 120 mm', value: 'U-waarde 0,18 W/m²K — R 5,55 m²K/W' },
+    { label: 'Minimale dakhelling', value: '≥ 8°' },
+    { label: 'Bevestiging', value: 'Op de golf van de dakpan' },
+    { label: 'Paneelbreedte', value: '1100 mm (werkend)' },
+    { label: 'Paneelengte', value: '2100 – 10 000 mm' },
+    { label: 'Brandklasse', value: 'B-s2,d0 (EN 13501-1)' },
   ]
   return (
     <section id="permapan" className="py-20 sm:py-28" style={{ backgroundColor: WARM_WHITE }}>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm lg:order-1">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Technische specificaties</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Technische specificaties</h3>
             <div className="divide-y divide-gray-50">
               {specs.map(s => (
                 <div key={s.label} className="flex justify-between gap-4 py-3 text-sm">
-                  <span className="text-gray-500">{s.label}</span>
+                  <span className="text-gray-400 shrink-0">{s.label}</span>
                   <span className="font-medium text-right" style={{ color: SLATE }}>{s.value}</span>
                 </div>
               ))}
             </div>
-            <div className="mt-6 rounded-xl p-4 text-sm leading-relaxed text-gray-600" style={{ backgroundColor: WARM_GRAY }}>
-              <strong style={{ color: SLATE }}>Wanneer kiezen voor Permapan?</strong><br />
-              Uitstekend voor platte of licht hellende daken op woningen, bijgebouwen en loodsen. De volledig geïntegreerde waterdichtheid maakt dit systeem bijzonder betrouwbaar.
+            <div className="mt-5 rounded-xl p-4 text-sm leading-relaxed" style={{ backgroundColor: WARM_GRAY }}>
+              <strong style={{ color: SLATE }}>Geschikt voor:</strong>
+              <span className="text-gray-600"> woningen met een hellend dak vanaf 8°. Combineert de traditonele dakpanuitstraling met moderne isolatieprestaties.</span>
             </div>
           </div>
           <div className="lg:order-2">
-            <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ backgroundColor: 'rgba(28,43,58,0.08)', color: SLATE }}>
-              Product 2
+            <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ backgroundColor: 'rgba(28,43,58,0.08)', color: SLATE }}>
+              Product 2 · Hellend dak ≥ 8°
             </div>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: SLATE }}>
-              Permapan
+              Joris Ide JI Permapan 1100
             </h2>
-            <p className="mt-1 text-lg font-medium text-gray-400">Het geïsoleerde plat daksysteem</p>
+            <p className="mt-1 text-base font-medium text-gray-400">Klassieke dakpanvorm · PIR-kern · breed toepasbaar</p>
             <p className="mt-5 leading-relaxed text-gray-600">
-              <strong>Permapan</strong> is een sandwichdakpaneel voor vlakke en licht hellende daken. Het systeem integreert isolatie en dakbedekking in één paneel met een PUR-kern — een van de best isolerende materialen die vandaag beschikbaar zijn.
+              De <strong>JI Permapan 1100</strong> is een geïsoleerd sandwichdakpaneel met een klassieke dakpanprofilering in de buitenplaat.
+              Het paneel geeft uw woning de vertrouwde uitstraling van traditionele dakpannen, maar dan gecombineerd met
+              superieure isolatie en een drastisch kortere plaatsingstijd.
             </p>
             <p className="mt-4 leading-relaxed text-gray-600">
-              Het gesloten paneel is volledig waterdicht uit de fabriek. Naad voor naad worden de panelen met speciaal gevormde verbindingen samengezet, waardoor er geen koudebrug of vochtprobleem kan optreden. Permapan is populair voor renovatie van platte daken op woningen en voor industriële toepassingen.
+              Dankzij de minimale helling van slechts 8° is de Permapan 1100 toepasbaar op een veel bredere waaier van
+              woningdaken dan de JI Slate. Beschikbaar in diktes van 40 tot 120 mm, waarbij de 120 mm-versie een U-waarde
+              van 0,18 W/m²K haalt — in lijn met de strengste EPB-vereisten.
             </p>
             <div className="mt-6 space-y-3">
-              <Voordeel>Superieure isolatiewaarde door PUR-kern</Voordeel>
-              <Voordeel>Volledig geïntegreerde waterdichtheid</Voordeel>
-              <Voordeel>Naadverbinding elimineert koudebruggen</Voordeel>
-              <Voordeel>Toepasbaar op woning, bijgebouw en loods</Voordeel>
-              <Voordeel>Lange levensduur met minimaal onderhoud</Voordeel>
+              <Voordeel>Klassieke dakpanuitstraling — vertrouwd voor elke buurt</Voordeel>
+              <Voordeel>Toepasbaar bij lage hellingen vanaf 8°</Voordeel>
+              <Voordeel>PIR-kern: uitstekende isolatie in een compacte dikte</Voordeel>
+              <Voordeel>5 diktes beschikbaar (40 – 120 mm) voor elk isolatieniveau</Voordeel>
+              <Voordeel>Combineerbaar met JI Dakpanplaat voor naadloos geheel</Voordeel>
+              <Voordeel>Stevig en weerbestendig — geen onderhoud na plaatsing</Voordeel>
             </div>
-            <button
-              onClick={() => scrollTo('contact')}
-              className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:brightness-110"
-              style={{ backgroundColor: SLATE, color: 'white' }}
-            >
+            <button onClick={() => scrollTo('contact')} className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:brightness-110" style={{ backgroundColor: SLATE, color: 'white' }}>
               Vraag info aan bij een dakwerker
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </button>
@@ -271,41 +335,42 @@ function ProductPermapan() {
 /* ── VERGELIJKING ───────────────────────────────────────── */
 function Vergelijking() {
   const rijen = [
-    { kenmerk: 'Daktype', slate: 'Hellend (>5°)', permapan: 'Vlak / licht hellend' },
-    { kenmerk: 'Isolatiekern', slate: 'PIR', permapan: 'PUR' },
-    { kenmerk: 'Beste U-waarde', slate: '0,17 W/m²K', permapan: '0,15 W/m²K' },
-    { kenmerk: 'Esthetiek', slate: 'Leisteenrelief', permapan: 'Strak vlak' },
-    { kenmerk: 'Waterdichtheid', slate: 'Via dakbedekking', permapan: 'Volledig geïntegreerd' },
+    { kenmerk: 'Uitstraling', slate: 'Leisteenmotief (modern/strak)', permapan: 'Klassieke dakpanvorm' },
+    { kenmerk: 'Minimale dakhelling', slate: '≥ 25°', permapan: '≥ 8°' },
+    { kenmerk: 'Isolatiekern', slate: 'PIR (CFC/HCFC-vrij)', permapan: 'PIR (CFC/HCFC-vrij)' },
+    { kenmerk: 'Beste U-waarde', slate: '0,18 W/m²K (120 mm)', permapan: '0,18 W/m²K (120 mm)' },
+    { kenmerk: 'Bevestiging', slate: 'Verborgen — geen zichtbare schroeven', permapan: 'Op de golf van de dakpan' },
+    { kenmerk: 'Beschikbare diktes', slate: '60 mm of 120 mm', permapan: '40 / 60 / 80 / 100 / 120 mm' },
     { kenmerk: 'Renovatie over bestaand dak', slate: '✓ Mogelijk', permapan: '✓ Mogelijk' },
-    { kenmerk: 'EPC-verbetering', slate: '✓ Ja', permapan: '✓ Ja' },
+    { kenmerk: 'Nieuwbouw', slate: '✓ Ja', permapan: '✓ Ja' },
   ]
   return (
     <section id="vergelijking" className="py-20 sm:py-28 bg-white">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <SectionHeader eyebrow="Vergelijking" title="JI Slate vs. Permapan" description="Beide systemen zijn kwalitatief hoogwaardige oplossingen. Het juiste systeem hangt af van uw daktype en situatie." />
+        <SectionHeader
+          eyebrow="Vergelijking"
+          title="JI Slate vs. JI Permapan"
+          description="Beide panelen zijn geïsoleerde sandwichdakpanelen van Joris Ide met PIR-kern. Het verschil zit in de uitstraling, de minimale dakhelling en het aantal beschikbare diktes."
+        />
         <div className="mt-12 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
-          <div className="grid grid-cols-3 gap-0 border-b border-gray-100 bg-gray-50 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+          <div className="grid grid-cols-3 border-b border-gray-100 bg-gray-50 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
             <div>Kenmerk</div>
             <div style={{ color: COPPER }}>JI Slate</div>
-            <div style={{ color: SLATE }}>Permapan</div>
+            <div style={{ color: SLATE }}>JI Permapan</div>
           </div>
           {rijen.map((r, i) => (
-            <div key={r.kenmerk} className={`grid grid-cols-3 gap-0 px-6 py-4 text-sm ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
+            <div key={r.kenmerk} className={`grid grid-cols-3 px-6 py-4 text-sm ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
               <div className="font-medium text-gray-700">{r.kenmerk}</div>
               <div className="text-gray-600">{r.slate}</div>
               <div className="text-gray-600">{r.permapan}</div>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-center text-sm text-gray-400">
-          Twijfelt u welk systeem geschikt is? Een erkend dakwerker bekijkt uw situatie en geeft concreet advies.
-        </p>
+        <div className="mt-6 rounded-xl border border-amber-100 bg-amber-50 p-4 text-sm text-amber-900">
+          <strong>Keuzehulp:</strong> Is uw dak steiler dan 25° en wilt u een strakke, moderne uitstraling? Kies JI Slate. Heeft uw dak een lagere helling of wilt u de klassieke dakpanvorm behouden? Dan is JI Permapan de juiste keuze.
+        </div>
         <div className="mt-4 text-center">
-          <button
-            onClick={() => scrollTo('contact')}
-            className="inline-flex items-center gap-2 rounded-full border-2 px-6 py-2.5 text-sm font-semibold transition hover:bg-opacity-5"
-            style={{ borderColor: COPPER, color: COPPER }}
-          >
+          <button onClick={() => scrollTo('contact')} className="inline-flex items-center gap-2 rounded-full border-2 px-6 py-2.5 text-sm font-semibold transition hover:opacity-80" style={{ borderColor: COPPER, color: COPPER }}>
             Laat u adviseren door een dakwerker
           </button>
         </div>
@@ -317,19 +382,40 @@ function Vergelijking() {
 /* ── TOEPASSINGEN ───────────────────────────────────────── */
 function Toepassingen() {
   const items = [
-    { titel: 'Woningrenovatie', tekst: 'Energetische renovatie van een bestaand hellend of plat dak. Vaak plaatsbaar over het bestaande dak zonder volledige sloop.', systeem: 'JI Slate of Permapan' },
-    { titel: 'Nieuwbouw woning', tekst: 'Snelle en efficiënte dakopbouw voor nieuwbouwwoningen. Één product vervangt meerdere traditionele lagen.', systeem: 'JI Slate of Permapan' },
-    { titel: 'Bijgebouw & garage', tekst: 'Platte daken van garages, carports en bijgebouwen krijgen een duurzame, volledig waterdichte oplossing.', systeem: 'Permapan' },
-    { titel: 'Landbouw & industrie', tekst: 'Grote oppervlakken worden snel gedekt. De panelen zijn bestand tegen extreme weersomstandigheden.', systeem: 'JI Slate of Permapan' },
+    {
+      icon: '🏠',
+      titel: 'Renovatie van bestaande woning',
+      tekst: 'Het paneel wordt in de meeste gevallen rechtstreeks over de bestaande dakbedekking geplaatst. Geen sloopwerk, geen afvalkosten, geen weken bouwoverlast.',
+      systeem: 'JI Slate of JI Permapan',
+    },
+    {
+      icon: '🏗️',
+      titel: 'Nieuwbouw woning',
+      tekst: 'Snelle dakopbouw bij nieuwbouw. Dankzij het lichte gewicht van de panelen volstaat een eenvoudigere en goedkopere draagstructuur.',
+      systeem: 'JI Slate of JI Permapan',
+    },
+    {
+      icon: '⚡',
+      titel: 'Energetische renovatie',
+      tekst: 'EPC-waarde verbeteren voor de premies en subsidies? Een geïsoleerd sandwichdakpaneel heeft een directe en meetbare impact op uw energielabel.',
+      systeem: 'JI Slate of JI Permapan',
+    },
+    {
+      icon: '🔄',
+      titel: 'Vervanging van asbestdak',
+      tekst: 'Na verwijdering van asbesthoudende dakplaten worden sandwichdakpanelen geplaatst op de bestaande gordingen — zonder volledige herbouw van de dakstructuur.',
+      systeem: 'JI Slate of JI Permapan',
+    },
   ]
   return (
     <section className="py-20 sm:py-28" style={{ backgroundColor: WARM_WHITE }}>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeader eyebrow="Toepassingen" title="Voor welke projecten is dit geschikt?" />
+        <SectionHeader eyebrow="Toepassingen" title="Voor welke woningprojecten is dit geschikt?" description="Sandwichdakpanelen zijn uitsluitend bestemd voor residentieel gebruik. Hieronder de meest voorkomende toepassingen bij particulieren." />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map(item => (
             <div key={item.titel} className="rounded-2xl bg-white p-6 shadow-sm border border-gray-100">
-              <h3 className="font-semibold" style={{ color: SLATE }}>{item.titel}</h3>
+              <div className="text-3xl">{item.icon}</div>
+              <h3 className="mt-4 font-semibold" style={{ color: SLATE }}>{item.titel}</h3>
               <p className="mt-2 text-sm leading-relaxed text-gray-500">{item.tekst}</p>
               <div className="mt-4 inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium" style={{ backgroundColor: 'rgba(196,145,74,0.1)', color: COPPER }}>
                 {item.systeem}
@@ -345,11 +431,30 @@ function Toepassingen() {
 /* ── FAQ ────────────────────────────────────────────────── */
 function FAQ() {
   const vragen = [
-    { v: 'Kan ik een sandwichdakpaneel op mijn bestaand dak plaatsen?', a: 'In veel gevallen wel. Bij renovatie wordt het paneel dikwijls rechtstreeks op de bestaande dakstructuur of dakbedekking gemonteerd. Dit bespaart sloopkosten en -tijd. Een dakwerker beoordeelt of de draagstructuur voldoende sterk is.' },
-    { v: 'Wat is het verschil tussen PIR en PUR isolatie?', a: 'Beide zijn schuimplastics met uitstekende isolerende eigenschappen. PIR (polyisocyanuraat) heeft een iets hogere brandweerstand en wordt daarom vaak gebruikt in hellende daken (JI Slate). PUR (polyurethaan) heeft een marginaal hogere isolatiewaarde en is gangbaar in platte daksystemen zoals Permapan.' },
-    { v: 'Welke dikte heb ik nodig om te voldoen aan de normen?', a: 'De Belgische EPB-normen schrijven een minimale Rd-waarde voor. Voor een dak ligt die momenteel op minimum 6 m²K/W in nieuwbouw. Een dikte van 120–160 mm PIR of PUR haalt dit comfortabel. Een dakwerker of energieadviseur berekent de exacte benodigde dikte voor uw project.' },
-    { v: 'Hoe lang gaat een sandwichdakpaneel mee?', a: 'Een correct geplaatst sandwichdaksysteem gaat 30 tot 50 jaar mee. Joris Ide geeft tot 30 jaar productgarantie. Het stalen buitenoppervlak is behandeld met een corrosiewerende coating die bestand is tegen Belgisch klimaat.' },
-    { v: 'Wat kost een sandwichdaksysteem?', a: 'De prijs hangt af van het dakoppervlak, de gekozen dikte en de complexiteit van het project. Sandwichdaksystemen zijn initieel duurder dan traditionele dakbedekking, maar de plaatskost is lager door de snellere uitvoering en de isolatie is meegenomen in de prijs. Vraag een offerte aan bij een erkend dakwerker voor een correcte vergelijking.' },
+    {
+      v: 'Moet de bestaande dakbedekking verwijderd worden?',
+      a: 'In de meeste gevallen niet. Bij renovatie worden sandwichdakpanelen rechtstreeks op de bestaande gordingen of dakbedekking geplaatst. Dit bespaart aanzienlijk op sloopkosten en -tijd. Een dakwerker beoordeelt ter plaatse of de draagstructuur voldoende sterk is.',
+    },
+    {
+      v: 'Wat is het verschil tussen JI Slate en JI Permapan?',
+      a: 'Beide zijn geïsoleerde sandwichdakpanelen van Joris Ide met een PIR-kern. Het belangrijkste verschil is de uitstraling en de minimale dakhelling: JI Slate heeft een leisteenmotief en vereist een helling van minimaal 25°. JI Permapan heeft een klassieke dakpanvorm en kan al vanaf 8° helling toegepast worden. Permapan is ook beschikbaar in meer diktes (40 tot 120 mm).',
+    },
+    {
+      v: 'Welke dikte heb ik nodig voor de Belgische EPB-normen?',
+      a: 'De Belgische EPB-normen vereisen voor daken een minimale Rd-waarde van 6 m²K/W in nieuwbouw. De 120 mm versie van zowel JI Slate (R 5,60) als JI Permapan (R 5,55) zit daar dicht bij. Voor nieuwbouw raadt u best een energieadviseur en erkende dakwerker te raadplegen om de exacte vereiste dikte te berekenen. Voor renovatie gelden soepelere normen.',
+    },
+    {
+      v: 'Hoe lang duurt de plaatsing bij een gemiddelde woning?',
+      a: 'Bij een gemiddelde gezinswoning (dakoppervlak van 80 – 150 m²) duurt de plaatsing van sandwichdakpanelen typisch 1 tot 3 werkdagen. Dit staat in schril contrast met een traditionele dakrenovatie waarbij meerdere lagen door meerdere aannemers worden geplaatst over een periode van 4 tot 8 weken.',
+    },
+    {
+      v: 'Hoeveel onderhoud vraagt een sandwichdakpaneel?',
+      a: 'Vrijwel geen. De stalen buitenplaat is behandeld met een duurzame coating (Grandem 40µ) die bestand is tegen het Belgische klimaat, zelfreinigend werkt en geen mosvorming toelaat. Een periodieke visuele controle volstaat. De fabrikant geeft een productgarantie tot 30 jaar.',
+    },
+    {
+      v: 'Kan ik premies of subsidies krijgen voor een sandwichdak?',
+      a: 'Ja, in de meeste Belgische gemeenten en gewesten zijn er premies beschikbaar voor dakisolatie en energierenovatie. De exacte premies hangen af van uw woonplaats, het EPC-niveau vóór en na de werken, en uw inkomen. Een erkend dakwerker kan u hierbij begeleiden en de aanvraag mee opvolgen.',
+    },
   ]
   const [open, setOpen] = useState<number | null>(null)
   return (
@@ -359,13 +464,9 @@ function FAQ() {
         <div className="mt-12 space-y-3">
           {vragen.map((item, i) => (
             <div key={i} className="rounded-xl border border-gray-100 overflow-hidden">
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="flex w-full items-center justify-between px-5 py-4 text-left text-sm font-medium transition hover:bg-gray-50"
-                style={{ color: SLATE }}
-              >
-                {item.v}
-                <svg className={`h-4 w-4 shrink-0 ml-4 transition-transform ${open === i ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: COPPER }}>
+              <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between px-5 py-4 text-left text-sm font-medium transition hover:bg-gray-50" style={{ color: SLATE }}>
+                <span className="pr-4">{item.v}</span>
+                <svg className={`h-4 w-4 shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: COPPER }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -393,6 +494,7 @@ function ContactForm() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError('')
+    if (!daktype) { setError('Kies een daktype.'); return }
     const fd = new FormData(e.currentTarget)
     const data = {
       naam: fd.get('naam') as string,
@@ -403,13 +505,9 @@ function ContactForm() {
       bericht: `Product interesse: ${product || 'niet opgegeven'}. ${fd.get('bericht') || ''}`.trim(),
       aangemaakt_op: new Date().toISOString(),
     }
-
-    if (!daktype) { setError('Kies een daktype.'); return }
-
     setSubmitting(true)
     const { error: sbError } = await supabase.from('leads').insert([data])
     setSubmitting(false)
-
     if (sbError) { setError('Er ging iets mis. Probeer het opnieuw.'); return }
     setDone(true)
   }
@@ -418,17 +516,16 @@ function ContactForm() {
     <section id="contact" className="py-20 sm:py-28" style={{ backgroundColor: SLATE_DEEP }}>
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ backgroundColor: 'rgba(196,145,74,0.15)', color: COPPER }}>
+          <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ backgroundColor: 'rgba(196,145,74,0.15)', color: COPPER }}>
             Meer info aanvragen
           </div>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Laat u adviseren door een erkend dakwerker
           </h2>
-          <p className="mt-3 text-base" style={{ color: 'rgba(255,255,255,0.65)' }}>
-            Vul uw gegevens in en een vakman neemt contact met u op voor persoonlijk advies over uw project — zonder verplichtingen.
+          <p className="mt-3 text-base text-white/65">
+            Vul uw gegevens in en een vakman neemt contact met u op voor persoonlijk advies — vrijblijvend en gratis.
           </p>
         </div>
-
         <div className="mt-10 rounded-2xl bg-white p-6 shadow-2xl sm:p-8">
           {done ? (
             <div className="py-10 text-center">
@@ -462,21 +559,20 @@ function ContactForm() {
                 </Field>
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
-                <Field id="daktype" label="Type dak" required>
+                <Field id="daktype" label="Daktype" required>
                   <select id="daktype" value={daktype} onChange={e => setDaktype(e.target.value)} className={inputCls} style={{ color: daktype ? '#1a1a1a' : '#9ca3af' }}>
                     <option value="" disabled>Kies daktype</option>
-                    <option value="hellend">Hellend dak</option>
-                    <option value="plat">Plat dak</option>
-                    <option value="combinatie">Combinatie</option>
-                    <option value="weet-niet">Weet ik niet</option>
+                    <option value="hellend-steil">Hellend dak (steiler dan 25°)</option>
+                    <option value="hellend-licht">Hellend dak (8° – 25°)</option>
+                    <option value="weet-niet">Weet ik niet zeker</option>
                   </select>
                 </Field>
                 <Field id="product" label="Interesse in">
                   <select id="product" value={product} onChange={e => setProduct(e.target.value)} className={inputCls} style={{ color: product ? '#1a1a1a' : '#9ca3af' }}>
                     <option value="" disabled>Kies product</option>
-                    <option value="JI Slate">Joris Ide JI Slate</option>
-                    <option value="Permapan">Permapan</option>
-                    <option value="beide">Beide / weet nog niet</option>
+                    <option value="JI Slate">JI VB Slate 1000 Dak</option>
+                    <option value="JI Permapan">JI Permapan 1100</option>
+                    <option value="beide">Weet nog niet</option>
                   </select>
                 </Field>
               </div>
@@ -484,7 +580,7 @@ function ContactForm() {
                 <textarea id="bericht" name="bericht" rows={3} maxLength={2000} placeholder="Beschrijf kort uw project of stel uw vraag…" className={`${inputCls} resize-none`} />
               </Field>
               {error && <p className="text-sm text-red-600">{error}</p>}
-              <button type="submit" disabled={submitting} className="h-13 w-full rounded-full py-3.5 text-base font-semibold text-white transition hover:brightness-110 disabled:opacity-60" style={{ backgroundColor: COPPER }}>
+              <button type="submit" disabled={submitting} className="h-14 w-full rounded-full py-3.5 text-base font-semibold text-white transition hover:brightness-110 disabled:opacity-60" style={{ backgroundColor: COPPER }}>
                 {submitting ? 'Versturen…' : 'Stuur mijn aanvraag →'}
               </button>
               <p className="text-center text-xs text-gray-400">Vrijblijvend · geen verplichtingen · wij respecteren uw privacy</p>
@@ -509,8 +605,8 @@ function Footer() {
           </div>
           Systeem<span style={{ color: COPPER }}>dak</span>
         </div>
-        <p className="text-xs text-center text-gray-400">
-          Onafhankelijke informatie over geïsoleerde daksystemen. Niet gelieerd aan een specifieke fabrikant of installateur.
+        <p className="text-xs text-center text-gray-400 max-w-sm">
+          Onafhankelijke informatie over geïsoleerde sandwichdaksystemen voor particuliere woningen. Productinfo gebaseerd op officiële Joris Ide technische fiches.
         </p>
         <p className="text-xs text-gray-400">© {new Date().getFullYear()} Systeemdak</p>
       </div>
@@ -551,4 +647,4 @@ function Field({ id, label, required, children }: { id: string; label: string; r
   )
 }
 
-const inputCls = "rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 w-full"
+const inputCls = "rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 w-full bg-white"
