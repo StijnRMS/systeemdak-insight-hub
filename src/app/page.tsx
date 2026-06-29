@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { supabase } from '@/lib/supabase'
 
 const SLATE = '#1c2b3a'
@@ -20,6 +21,7 @@ export default function Home() {
       <main>
         <Hero />
         <TraditioneelVsSandwich />
+        <VoorNaProject />
         <ProductSlate />
         <ProductPermapan />
         <Vergelijking />
@@ -71,26 +73,44 @@ function Hero() {
     <section id="top" className="relative overflow-hidden py-24 sm:py-32" style={{ backgroundColor: SLATE_DEEP }}>
       <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #c4914a 0, #c4914a 1px, transparent 0, transparent 50%)', backgroundSize: '20px 20px' }} />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium" style={{ borderColor: 'rgba(196,145,74,0.4)', color: COPPER, backgroundColor: 'rgba(196,145,74,0.08)' }}>
-            Onafhankelijke productinformatie voor particulieren
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium" style={{ borderColor: 'rgba(196,145,74,0.4)', color: COPPER, backgroundColor: 'rgba(196,145,74,0.08)' }}>
+              Onafhankelijke productinformatie voor particulieren
+            </div>
+            <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Uw woning opnieuw dakdicht én<br />
+              <span style={{ color: COPPER }}>perfect geïsoleerd in enkele dagen</span>
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-white/75">
+              Geïsoleerde sandwichdakpanelen vervangen de volledige traditionele dakopbouw in één handeling.
+              Ontdek hoe <strong className="text-white">JI Slate</strong> en <strong className="text-white">JI Permapan</strong> van Joris Ide werken,
+              en welk systeem het beste past bij uw woning.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button onClick={() => scrollTo('hoe-het-werkt')} className="rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110" style={{ backgroundColor: COPPER }}>
+                Hoe werkt een sandwichdak?
+              </button>
+              <button onClick={() => scrollTo('project')} className="rounded-full border px-6 py-3 text-sm font-semibold transition hover:bg-white/10" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.85)' }}>
+                Bekijk een realisatie
+              </button>
+            </div>
           </div>
-          <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Uw woning opnieuw dakdicht én<br />
-            <span style={{ color: COPPER }}>perfect geïsoleerd in enkele dagen</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-            Geïsoleerde sandwichdakpanelen vervangen de volledige traditionele dakopbouw in één handeling.
-            Ontdek hoe <strong className="text-white">JI Slate</strong> en <strong className="text-white">JI Permapan</strong> van Joris Ide werken,
-            en welk systeem het beste past bij uw woning.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button onClick={() => scrollTo('hoe-het-werkt')} className="rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110" style={{ backgroundColor: COPPER }}>
-              Hoe werkt een sandwichdak?
-            </button>
-            <button onClick={() => scrollTo('vergelijking')} className="rounded-full border px-6 py-3 text-sm font-semibold transition hover:bg-white/10" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.85)' }}>
-              Producten vergelijken
-            </button>
+          <div className="relative hidden lg:block">
+            <div className="overflow-hidden rounded-2xl shadow-2xl" style={{ border: '1px solid rgba(196,145,74,0.2)' }}>
+              <Image
+                src="/project-na.jpg"
+                alt="Afgewerkt project met JI VB Slate 1000 Dak panelen"
+                width={700}
+                height={450}
+                className="w-full object-cover"
+                priority
+              />
+            </div>
+            <div className="absolute -bottom-4 -left-4 rounded-xl px-4 py-3 shadow-lg" style={{ backgroundColor: SLATE }}>
+              <div className="text-xs font-medium text-white/70">Realisatie · JI Slate</div>
+              <div className="text-sm font-bold text-white mt-0.5">'t Kompresseurken — Geïnstalleerd op spanten</div>
+            </div>
           </div>
         </div>
       </div>
@@ -101,7 +121,7 @@ function Hero() {
 /* ── TRADITIONEEL VS SANDWICH ───────────────────────────── */
 function TraditioneelVsSandwich() {
   const traditioneel = [
-    { stap: '1', label: 'Dakstructuur / gordingen', detail: 'Houten of stalen draagstructuur' },
+    { stap: '1', label: 'Dakstructuur / gordingen of spanten', detail: 'Houten of stalen draagstructuur' },
     { stap: '2', label: 'Isolatieplaten', detail: 'Afzonderlijke PIR- of minerale wolplaten' },
     { stap: '3', label: 'Dampscherm', detail: 'Folie om vochtdoorslag te voorkomen' },
     { stap: '4', label: 'Onderdak / onderpan', detail: 'Extra waterkerende laag' },
@@ -109,7 +129,7 @@ function TraditioneelVsSandwich() {
     { stap: '6', label: 'Dakpannen of leien', detail: 'Definitieve dakbedekking' },
   ]
   const sandwich = [
-    { stap: '1', label: 'Dakstructuur / gordingen', detail: 'Houten of stalen draagstructuur' },
+    { stap: '1', label: 'Dakstructuur / gordingen of spanten', detail: 'Houten of stalen draagstructuur' },
     { stap: '2', label: 'Sandwichdakpaneel', detail: 'Isolatie + dampscherm + dakbedekking in één paneel', highlight: true },
   ]
   return (
@@ -180,8 +200,67 @@ function TraditioneelVsSandwich() {
           </div>
         </div>
         <p className="mt-8 text-center text-sm text-gray-400">
-          Bij renovatie worden de bestaande pannen of leien eerst verwijderd. De sandwichdakpanelen worden daarna rechtstreeks op de gordingen bevestigd — zonder volledige herbouw van de dakstructuur.
+          Bij renovatie worden de bestaande pannen of leien eerst verwijderd. De sandwichdakpanelen worden daarna rechtstreeks op de gordingen of spanten bevestigd — zonder volledige herbouw van de dakstructuur.
         </p>
+      </div>
+    </section>
+  )
+}
+
+/* ── VOOR / NA PROJECT ──────────────────────────────────── */
+function VoorNaProject() {
+  return (
+    <section id="project" className="py-20 sm:py-28 bg-white">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SectionHeader
+          eyebrow="Realisatie"
+          title="Van verouderd dak naar nieuw in twee dagen"
+          description="Een concreet voorbeeld: 't Kompresseurken kreeg een volledig nieuw dak met JI VB Slate 1000 Dak panelen, bevestigd op de bestaande spanten."
+        />
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          {/* VOOR — gebruiker plaatst project-voor.jpg in /public */}
+          <div className="relative overflow-hidden rounded-2xl bg-gray-100 shadow-sm">
+            <div className="flex aspect-[4/3] w-full items-center justify-center">
+              <div className="text-center px-8">
+                <div className="text-5xl mb-3">🏚️</div>
+                <p className="text-sm font-semibold text-gray-500">Foto volgt</p>
+                <p className="text-xs text-gray-400 mt-1">Bewaar de Google Street View screenshot als <code className="rounded bg-gray-200 px-1">public/project-voor.jpg</code></p>
+              </div>
+            </div>
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+              <span className="inline-flex rounded-full bg-gray-700 px-3 py-1 text-xs font-semibold text-white">Vóór</span>
+              <p className="mt-1 text-sm text-white/90">Oud mos­dak met verouderde bedekking</p>
+            </div>
+          </div>
+          {/* NA */}
+          <div className="relative overflow-hidden rounded-2xl shadow-sm">
+            <Image
+              src="/project-na.jpg"
+              alt="Na renovatie met JI Slate panelen — 't Kompresseurken"
+              width={700}
+              height={525}
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+              <span className="inline-flex rounded-full px-3 py-1 text-xs font-semibold text-white" style={{ backgroundColor: COPPER }}>Na</span>
+              <p className="mt-1 text-sm text-white/90">JI VB Slate 1000 Dak · bevestigd op spanten · 2 dagen plaatsingstijd</p>
+            </div>
+          </div>
+        </div>
+        <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+          <div className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+            <div className="text-2xl font-bold" style={{ color: SLATE }}>2 dagen</div>
+            <div className="text-xs text-gray-400 mt-1">plaatsingstijd</div>
+          </div>
+          <div className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+            <div className="text-2xl font-bold" style={{ color: SLATE }}>1 ploeg</div>
+            <div className="text-xs text-gray-400 mt-1">één aannemer</div>
+          </div>
+          <div className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+            <div className="text-2xl font-bold" style={{ color: SLATE }}>0 extra</div>
+            <div className="text-xs text-gray-400 mt-1">losse isolatielagen</div>
+          </div>
+        </div>
       </div>
     </section>
   )
@@ -229,7 +308,7 @@ function ProductSlate() {
               <Voordeel>Leistenen uitstraling zonder het gewicht van echte leien</Voordeel>
               <Voordeel>Verborgen bevestiging — geen zichtbare schroeven of schroefgaten</Voordeel>
               <Voordeel>PIR-kern: hoge isolatiewaarde per cm dikte, CFC/HCFC-vrij</Voordeel>
-              <Voordeel>Bij renovatie bevestigd op bestaande gordingen — geen volledige herbouw nodig</Voordeel>
+              <Voordeel>Bij renovatie bevestigd op bestaande gordingen of spanten — geen volledige herbouw nodig</Voordeel>
               <Voordeel>Lichtgewicht staal — geen extra versteviging van de draagstructuur</Voordeel>
               <Voordeel>Minimaal onderhoud dankzij duurzame Grandem-coating</Voordeel>
             </div>
@@ -238,19 +317,30 @@ function ProductSlate() {
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </button>
           </div>
-          <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Technische specificaties</h3>
-            <div className="divide-y divide-gray-50">
-              {specs.map(s => (
-                <div key={s.label} className="flex justify-between gap-4 py-3 text-sm">
-                  <span className="text-gray-400 shrink-0">{s.label}</span>
-                  <span className="font-medium text-right" style={{ color: SLATE }}>{s.value}</span>
-                </div>
-              ))}
+          <div className="space-y-4">
+            <div className="overflow-hidden rounded-2xl shadow-sm">
+              <Image
+                src="/slate-paneel.jpg"
+                alt="JI VB Slate 1000 Dak paneel — leisteenmotief in antraciet"
+                width={700}
+                height={420}
+                className="w-full object-cover"
+              />
             </div>
-            <div className="mt-5 rounded-xl p-4 text-sm leading-relaxed" style={{ backgroundColor: WARM_GRAY }}>
-              <strong style={{ color: SLATE }}>Geschikt voor:</strong>
-              <span className="text-gray-600"> woningen met een hellend dak van minimaal 25°. Ideaal voor renovatie én nieuwbouw in residentiële sector.</span>
+            <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Technische specificaties</h3>
+              <div className="divide-y divide-gray-50">
+                {specs.map(s => (
+                  <div key={s.label} className="flex justify-between gap-4 py-3 text-sm">
+                    <span className="text-gray-400 shrink-0">{s.label}</span>
+                    <span className="font-medium text-right" style={{ color: SLATE }}>{s.value}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-5 rounded-xl p-4 text-sm leading-relaxed" style={{ backgroundColor: WARM_GRAY }}>
+                <strong style={{ color: SLATE }}>Geschikt voor:</strong>
+                <span className="text-gray-600"> woningen met een hellend dak van minimaal 25°. Ideaal voor renovatie én nieuwbouw in residentiële sector.</span>
+              </div>
             </div>
           </div>
         </div>
@@ -341,7 +431,7 @@ function Vergelijking() {
     { kenmerk: 'Beste U-waarde', slate: '0,18 W/m²K (120 mm)', permapan: '0,18 W/m²K (120 mm)' },
     { kenmerk: 'Bevestiging', slate: 'Verborgen — geen zichtbare schroeven', permapan: 'Op de golf van de dakpan' },
     { kenmerk: 'Beschikbare diktes', slate: '60 mm of 120 mm', permapan: '40 / 60 / 80 / 100 / 120 mm' },
-    { kenmerk: 'Renovatie over bestaand dak', slate: '✓ Mogelijk', permapan: '✓ Mogelijk' },
+    { kenmerk: 'Renovatie op gordingen/spanten', slate: '✓ Ja', permapan: '✓ Ja' },
     { kenmerk: 'Nieuwbouw', slate: '✓ Ja', permapan: '✓ Ja' },
   ]
   return (
@@ -385,7 +475,7 @@ function Toepassingen() {
     {
       icon: '🏠',
       titel: 'Renovatie van bestaande woning',
-      tekst: 'De bestaande pannen of leien worden verwijderd, waarna de sandwichdakpanelen rechtstreeks op de gordingen worden bevestigd. De draagstructuur blijft volledig behouden.',
+      tekst: 'De bestaande pannen of leien worden verwijderd, waarna de sandwichdakpanelen rechtstreeks op de gordingen of spanten worden bevestigd. De dakstructuur zelf blijft volledig behouden.',
       systeem: 'JI Slate of JI Permapan',
     },
     {
